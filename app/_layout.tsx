@@ -65,7 +65,12 @@ function RootLayoutNav() {
     <AuthProvider>
 
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
+        <Stack
+          screenOptions={{ headerShown: false }}
+        >
+
+
+    <Stack.Screen name="restaurant/dashboard" options={{ headerShown: false }} />
 
           <Stack.Screen name="auth/login" options={{ headerShown: false }} />
           <Stack.Screen name="auth/register" options={{ headerShown: false }} />

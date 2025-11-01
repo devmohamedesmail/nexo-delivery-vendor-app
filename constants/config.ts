@@ -1,4 +1,4 @@
 export const config = {
-    URL: 'https://uber-express-project.onrender.com/api',
+    URL: 'https://food-delivery-and-rides.onrender.com/api/v1',
     CURRENCY: 'ج.م',
 }

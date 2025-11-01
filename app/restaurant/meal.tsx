@@ -22,17 +22,17 @@ export default function AddMeal() {
   // Validation schema
   const validationSchema = Yup.object().shape({
     title: Yup.string()
-      .required('Meal title is required')
-      .min(2, 'Title must be at least 2 characters'),
+      .required(t('meal.titleRequired'))
+      .min(2, t('meal.titleMinLength')),
     description: Yup.string()
-      .required('Description is required')
-      .min(10, 'Description must be at least 10 characters'),
+      .required(t('meal.descriptionRequired'))
+      .min(10, t('meal.descriptionMinLength')),
     price: Yup.number()
-      .required('Price is required')
-      .positive('Price must be positive')
-      .typeError('Please enter a valid price'),
+      .required(t('meal.priceRequired'))
+      .positive(t('meal.pricePositive'))
+      .typeError(t('meal.priceValid')),
     image: Yup.string()
-      .required('Meal image is required')
+      .required(t('meal.imageRequired'))
   })
 
   const pickImage = async (setFieldValue: (field: string, value: string) => void) => {
@@ -41,7 +41,7 @@ export default function AddMeal() {
       const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync()
 
       if (permissionResult.granted === false) {
-        Alert.alert('Permission Required', 'Permission to access camera roll is required!')
+        Alert.alert(t('meal.permissionRequired'), t('meal.permissionMessage'))
         return
       }
 
@@ -60,7 +60,7 @@ export default function AddMeal() {
       }
     } catch (error) {
       console.error('Error picking image:', error)
-      Alert.alert('Error', 'Failed to pick image')
+      Alert.alert(t('meal.error'), t('meal.failedToPickImage'))
     }
   }
 
@@ -114,7 +114,7 @@ export default function AddMeal() {
         )
         
         console.log('Meal added with Cloudinary URL:', response.data)
-        Toast.success('Meal added successfully!')
+        Toast.success(t('meal.mealAddedSuccess'))
         router.back()
       } catch (error: any) {
         console.error('Full error:', error)
@@ -129,7 +129,7 @@ export default function AddMeal() {
         }
         
         console.error('Error adding meal:', error)
-        Toast.error(error.response?.data?.message || 'Failed to add meal')
+        Toast.error(error.response?.data?.message || t('meal.failedToAddMeal'))
       } finally {
         setIsSubmitting(false)
       }
@@ -137,120 +137,141 @@ export default function AddMeal() {
   })
 
   return (
-    <ScrollView className="flex-1 bg-white">
-      <View className="px-6 py-8">
-        {/* Header with Back Button */}
-        <CustomHeader title='Add New Meal' />
-       
-
-        <View className="space-y-4">
-          {/* Meal Title */}
-          <CustomInput
-            label="Meal Title"
-            placeholder="Enter meal title"
-            value={formik.values.title}
-            onChangeText={formik.handleChange('title')}
-            type="text"
-            error={formik.touched.title && formik.errors.title ? formik.errors.title : undefined}
-          />
-
-          {/* Description */}
-          <View className="mb-4">
+    <View className="flex-1 bg-gray-50">
+      {/* Improved Header */}
+      <View className="bg-white shadow-lg border-b border-gray-100" style={{ paddingTop: 50 }}>
+        <View className="flex-row items-center justify-between px-6 py-4">
+          <TouchableOpacity
+            onPress={() => router.back()}
+            className="w-10 h-10 bg-gray-100 rounded-full items-center justify-center"
+          >
+            <Ionicons name="arrow-back" size={20} color="#374151" />
+          </TouchableOpacity>
+          
+          <View className="flex-1 mx-4">
             <Text
-              className="text-gray-700 text-base font-medium mb-2"
-              style={{ fontFamily: 'Cairo_600SemiBold' }}
+              className="text-xl font-bold text-gray-800 text-center"
+              style={{ fontFamily: 'Cairo_700Bold' }}
             >
-              Description
+              {t('meal.addNewMeal')}
             </Text>
-            <CustomInput
-              placeholder="Enter meal description"
-              value={formik.values.description}
-              onChangeText={formik.handleChange('description')}
-              type="text"
-              error={formik.touched.description && formik.errors.description ? formik.errors.description : undefined}
-            />
+            <Text
+              className="text-sm text-gray-500 text-center mt-1"
+              style={{ fontFamily: 'Cairo_400Regular' }}
+            >
+              {t('meal.createMenuItemSubtitle')}
+            </Text>
+          </View>
+          
+          <View className="w-10" />
+        </View>
+      </View>
+
+      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+        <View className="px-6 py-6">
+          {/* Form Container */}
+          <View className="bg-white rounded-2xl shadow-sm p-6">
+            <View className="space-y-6">
+              {/* Meal Title */}
+              <View>
+                <CustomInput
+                  label={t('meal.mealTitle')}
+                  placeholder={t('meal.enterMealTitle')}
+                  value={formik.values.title}
+                  onChangeText={formik.handleChange('title')}
+                  type="text"
+                  error={formik.touched.title && formik.errors.title ? formik.errors.title : undefined}
+                />
+              </View>
+
+              {/* Description */}
+              <View>
+                <Text
+                  className="text-gray-700 text-base font-medium mb-3"
+                  style={{ fontFamily: 'Cairo_600SemiBold' }}
+                >
+                  {t('meal.description')}
+                </Text>
+                <View className="bg-gray-50 rounded-xl border border-gray-200 p-4">
+                  <CustomInput
+                    placeholder={t('meal.enterMealDescription')}
+                    value={formik.values.description}
+                    onChangeText={formik.handleChange('description')}
+                    type="text"
+                    error={formik.touched.description && formik.errors.description ? formik.errors.description : undefined}
+                  />
+                </View>
+              </View>
+
+              {/* Price */}
+              <View>
+                <CustomInput
+                  label={t('meal.price')}
+                  placeholder={t('meal.enterMealPrice')}
+                  value={formik.values.price}
+                  onChangeText={formik.handleChange('price')}
+                  type="text"
+                  keyboardType="numeric"
+                  error={formik.touched.price && formik.errors.price ? formik.errors.price : undefined}
+                />
+              </View>
+
+              {/* Meal Image */}
+              <View>
+                <Text
+                  className="text-gray-700 text-base font-medium mb-3"
+                  style={{ fontFamily: 'Cairo_600SemiBold' }}
+                >
+                  {t('meal.mealImage')}
+                </Text>
+                <View className="bg-gray-50 rounded-xl border border-gray-200 p-4">
+                  <CustomImagePicker
+                    placeholder={t('meal.tapToSelectImage')}
+                    changeText={t('meal.tapToChangeImage')}
+                    value={formik.values.image}
+                    onImageSelect={(uri) => formik.setFieldValue('image', uri)}
+                    error={formik.touched.image && formik.errors.image ? formik.errors.image : undefined}
+                  />
+                </View>
+              </View>
+            </View>
           </View>
 
-          {/* Price */}
-          <CustomInput
-            label="Price ($)"
-            placeholder="Enter meal price"
-            value={formik.values.price}
-            onChangeText={formik.handleChange('price')}
-            type="text"
-            keyboardType="numeric"
-            error={formik.touched.price && formik.errors.price ? formik.errors.price : undefined}
-          />
-
-          <CustomImagePicker
-            label="Meal Image"
-            placeholder="Tap to select meal image"
-            changeText="Tap to change meal image"
-            value={formik.values.image}
-            onImageSelect={(uri) => formik.setFieldValue('image', uri)}
-            error={formik.touched.image && formik.errors.image ? formik.errors.image : undefined}
-          />
-
-          {/* Meal Image Picker */}
-          {/* <View className="mb-4">
-            <Text
-              className="text-gray-700 text-base font-medium mb-2"
-              style={{ fontFamily: 'Cairo_600SemiBold' }}
-            >
-              Meal Image
-            </Text>
-
-            <TouchableOpacity
-              onPress={() => pickImage(formik.setFieldValue)}
-              className="border-2 border-dashed border-gray-300 rounded-lg p-6 items-center justify-center min-h-[120px]"
-            >
-              {selectedImage ? (
-                <View className="items-center">
-                  <Image
-                    source={{ uri: selectedImage }}
-                    className="w-20 h-20 rounded-lg mb-2"
-                    resizeMode="cover"
-                  />
-                  <Text
-                    className="text-blue-600 text-sm"
-                    style={{ fontFamily: 'Cairo_400Regular' }}
-                  >
-                    Tap to change image
-                  </Text>
-                </View>
-              ) : (
-                <View className="items-center">
-                  <Ionicons name="camera" size={32} color="#9CA3AF" />
-                  <Text
-                    className="text-gray-500 mt-2 text-center"
-                    style={{ fontFamily: 'Cairo_400Regular' }}
-                  >
-                    Tap to select meal image
-                  </Text>
-                </View>
-              )}
-            </TouchableOpacity>
-
-            {formik.touched.image && formik.errors.image && (
-              <Text
-                className="text-red-500 mt-1 text-sm"
-                style={{ fontFamily: 'Cairo_400Regular' }}
-              >
-                {formik.errors.image}
-              </Text>
-            )}
-          </View> */}
-
-          {/* Submit Button */}
-          <View className="mt-8">
+          {/* Action Buttons */}
+          <View className="mt-6 space-y-3">
             <CustomButton
-              title={isSubmitting ? 'Adding Meal...' : 'Add Meal'}
+              title={isSubmitting ? t('meal.addingMeal') : t('meal.addMeal')}
               onPress={formik.handleSubmit}
               disabled={isSubmitting || !formik.isValid || !formik.dirty}
             />
+            
+            <TouchableOpacity 
+              onPress={() => router.back()}
+              className="bg-gray-100 py-4 rounded-xl items-center"
+            >
+              <Text 
+                className="text-gray-700 font-semibold"
+                style={{ fontFamily: 'Cairo_600SemiBold' }}
+              >
+                {t('meal.cancel')}
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* Helper Text */}
+          <View className="mt-6 bg-blue-50 rounded-xl p-4">
+            <View className="flex-row items-start">
+              <Ionicons name="information-circle" size={20} color="#3B82F6" style={{ marginTop: 2, marginRight: 8 }} />
+              <Text 
+                className="text-blue-700 text-sm flex-1"
+                style={{ fontFamily: 'Cairo_400Regular' }}
+              >
+                {t('meal.helpText')}
+              </Text>
+            </View>
           </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   )
 }

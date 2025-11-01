@@ -21,9 +21,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
   const { auth, handle_login } = useContext(AuthContext)
-  // console.log(auth)
 
-  // Formik form handling with Yup validation
 
   const formik = useFormik({
     initialValues: {
@@ -51,16 +49,29 @@ export default function Login() {
       try {
         const result = await handle_login(values.identifier, values.password)
         Toast.show({
-          text1: t('login_success'),
+          text1: t('auth.login_success'),
           type: 'success',
         })
 
         const role = result.data.user.role;
+        if (role === 'restaurant_owner') {
+          router.replace('/restaurant/dashboard')
+        } else if (role === 'restaurant') {
+          router.replace('/')
+        } else if (role === 'driver') {
+          router.replace('/')
+        } else {
+          router.replace('/')
+        }
+
         console.log("Login result:", result.data.user.role);
         setIsLoading(false)
       } catch (error) {
         setIsLoading(false)
-        console.log(error)
+        Toast.show({
+          text1: t('auth.login_failed'),
+          type: 'error',
+        })
       } finally {
         setIsLoading(false)
       }
@@ -70,8 +81,8 @@ export default function Login() {
 
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+    <View className="flex-1 bg-white">
+
 
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -84,24 +95,12 @@ export default function Login() {
         >
           {/* Header */}
           <View className="pt-10 pb-8 px-6">
-            <View className="flex-row justify-between items-center mb-8">
-              <TouchableOpacity
-                onPress={() => router.back()}
-                className="p-2"
-              >
-                <Ionicons
-                  name={i18n.language === 'ar' ? "chevron-forward" : "chevron-back"}
-                  size={24}
-                  color="#374151"
-                />
-              </TouchableOpacity>
-              <LanguageSwitcher />
-            </View>
+            
 
 
 
             {/* Logo/Brand Section */}
-            <View className="items-center mb-8">
+            <View className="items-center mb-8 pt-20">
               <Logo />
               <Text
                 className="text-3xl font-bold text-gray-800 mb-2"
@@ -148,11 +147,11 @@ export default function Login() {
                   onPress={() => setRememberMe(!rememberMe)}
                   className="flex-row items-center"
                 >
-                  <View className={`w-5 h-5 border-2 border-gray-300 rounded mr-2 items-center justify-center ${rememberMe ? 'bg-secondary border-secondary' : ''}`}>
+                  <View className={`w-5 h-5 border-2 border-gray-300 rounded mr-2 items-center justify-center ${rememberMe ? 'bg-primary border-primary' : ''}`}>
                     {rememberMe && <Ionicons name="checkmark" size={12} color="white" />}
                   </View>
                   <Text
-                    className="text-gray-700"
+                    className="text-black"
                     style={{ fontFamily: 'Cairo_400Regular' }}
                   >
                     {t('auth.rememberMe')}
@@ -161,7 +160,7 @@ export default function Login() {
 
                 <TouchableOpacity onPress={() => { }}>
                   <Text
-                    className="text-secondary font-medium"
+                    className="text-primary font-medium"
                     style={{ fontFamily: 'Cairo_600SemiBold' }}
                   >
                     {t('auth.forgotPassword')}
@@ -190,7 +189,7 @@ export default function Login() {
                 </Text>
                 <TouchableOpacity onPress={() => router.push('/auth/register')}>
                   <Text
-                    className="text-secondary font-semibold ml-1"
+                    className="text-primary font-semibold ml-1"
                     style={{ fontFamily: 'Cairo_600SemiBold' }}
                   >
                     {t('auth.signUp')}
@@ -201,6 +200,6 @@ export default function Login() {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   )
 }

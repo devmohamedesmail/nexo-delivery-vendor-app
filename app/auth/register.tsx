@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { View,Text,ScrollView,KeyboardAvoidingView,Platform,StatusBar,TouchableOpacity,Alert} from 'react-native'
+import { View, Text, ScrollView, KeyboardAvoidingView, Platform, StatusBar, TouchableOpacity, Alert } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
@@ -12,6 +12,7 @@ import Resturant_Register from '@/components/resturant_register'
 import DriverRegister from '@/components/driver_register'
 import { Toast } from 'toastify-react-native'
 import { useRouter } from 'expo-router'
+import Logo from '@/components/logo'
 
 type UserRole = 'restaurant_owner' | 'driver'
 
@@ -26,7 +27,7 @@ export default function Register() {
     const { t, i18n } = useTranslation()
     const [isLoading, setIsLoading] = useState(false)
     const { handle_register } = useContext(AuthContext)
-    const [tab, setTab] = useState('3')
+    const [tab, setTab] = useState('2')
     const router = useRouter()
 
 
@@ -55,33 +56,35 @@ export default function Register() {
         validationSchema,
         onSubmit: async (values) => {
             setIsLoading(true)
-            
+
             try {
 
                 const result = await handle_register(values.name, values.identifier, values.password, values.role)
                 if (result.success) {
-                    
+
                     Toast.show({
                         type: 'success',
-                        text1: t('registration_success'),
+                        text1: t('auth.registration_success'),
                         position: 'top',
                         visibilityTime: 3000,
                     });
+
+                    if (values.role === 'restaurant_owner') {
+                        setTab('2')
+                    } else if (values.role === 'driver') {
+                        setTab('3')
+                    }
                 } else {
                     Toast.show({
                         type: 'error',
-                        text1: t('registration_failed'),
+                        text1: t('auth.registration_failed'),
                         position: 'top',
                         visibilityTime: 3000,
                     });
 
                 }
-                
-                if (values.role === 'restaurant_owner') {
-                    setTab('2')
-                }else if (values.role === 'driver') {
-                    setTab('3')
-                }
+
+
             } catch (error) {
                 Alert.alert('Error', 'Network error. Please try again.')
             } finally {
@@ -122,10 +125,14 @@ export default function Register() {
 
                     {tab === '1' && (
                         <>
-                            <AuthHeader />
+                            {/* <AuthHeader /> */}
 
                             {/* Registration Form */}
-                            <View className="flex-1 bg-white rounded-t-[32px] px-6 pt-6">
+                            <View className="flex-1 bg-white rounded-t-[32px] px-6 pt-20">
+                                <View className='flex items-center justify-center'>
+                                    <Logo />
+
+                                </View>
                                 <View className="mb-6">
                                     <Text className="text-2xl text-center arabic-font text-gray-800 mb-2">
                                         {t('auth.createAccount')}
@@ -174,23 +181,23 @@ export default function Register() {
                                                 key={option.value}
                                                 onPress={() => formik.setFieldValue('role', option.value)}
                                                 className={`border rounded-xl p-4 mb-3 flex-row items-center ${formik.values.role === option.value
-                                                        ? 'border-primary bg-black-50'
-                                                        : 'border-gray-200 bg-gray-50'
+                                                    ? 'border-primary bg-black-50'
+                                                    : 'border-gray-200 bg-gray-50'
                                                     }`}
                                             >
                                                 <View className={`w-10 h-10 rounded-full items-center justify-center mr-4 ${formik.values.role === option.value
-                                                        ? 'bg-blue-100'
-                                                        : 'bg-gray-100'
+                                                    ? 'bg-blue-100'
+                                                    : 'bg-gray-100'
                                                     }`}>
                                                     <Ionicons
                                                         name={option.icon as any}
                                                         size={20}
-                                                        color={formik.values.role === option.value ? '#3B82F6' : '#6B7280'}
+                                                        color={formik.values.role === option.value ? 'red' : '#6B7280'}
                                                     />
                                                 </View>
                                                 <Text className={`flex-1 font-medium arabic-font ${formik.values.role === option.value
-                                                        ? 'text-priamry'
-                                                        : 'text-gray-700'
+                                                    ? 'text-priamry'
+                                                    : 'text-gray-700'
                                                     }`}>
                                                     {option.label}
                                                 </Text>
@@ -214,15 +221,15 @@ export default function Register() {
                                     icon={<Ionicons name="arrow-forward" size={20} color="white" />}
                                 />
 
-                        
 
 
-                            
+
+
 
 
                                 {/* Terms and Sign In Link */}
                                 <View className="mb-6">
-                                   
+
 
                                     <View className="flex-row justify-center items-center">
                                         <Text className="text-gray-600">{t('auth.alreadyHaveAccount')} </Text>
@@ -241,7 +248,7 @@ export default function Register() {
                     )}
 
                     {tab === '3' && (
-                        <DriverRegister/>
+                        <DriverRegister />
                     )}
                 </ScrollView>
             </KeyboardAvoidingView>

@@ -5,16 +5,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: "#010101ff", // اللون الأساسي
-          light: "#3B82F6",   // درجة فاتحة
-          dark: "#1E3A8A",    // درجة غامقة
-        },
-        secondary: {
-          DEFAULT: "#ef6b05ff", // لون ثانوي أساسي
-          light: "#ef6b05ff",   // درجة فاتحة
-          dark: "#B45309",    // درجة غامقة
-        },
+        primary: "#FF0000",
+        secondary: "#F59E0B",
+        accent: "#10B981",
+        
       },
     },
   },
