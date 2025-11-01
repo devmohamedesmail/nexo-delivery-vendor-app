@@ -10,7 +10,7 @@ const {t, i18n}= useTranslation();
     return (
         <TouchableOpacity
             onPress={onPress}
-            className="bg-white rounded-xl p-4 flex-1 mr-2 shadow-sm items-center w-0.5">
+            className="bg-white rounded-xl p-4 flex-1 mr-2 shadow-sm items-center w-1/2">
             {icon}
             <Text className={`text-gray-800 mt-2 text-center font-medium ${i18n.language === 'ar' ? 'arabic-font' : ''}`}>
                 {title}

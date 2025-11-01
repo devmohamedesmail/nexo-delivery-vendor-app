@@ -6,7 +6,6 @@ import { useRouter } from 'expo-router'
 import { Toast } from 'toastify-react-native'
 import CustomLoading from '@/components/custom/customloading'
 import useFetch from '@/hooks/useFetch'
-import OrderItem from '@/items/order_item'
 
 interface OrderItem {
   id: number
@@ -34,14 +33,14 @@ export default function Orders() {
   const {data,loading ,error} = useFetch('/orders/restaurant/72');
 
 
-  // const filteredOrders = data.filter(order => {
-  //   switch (activeTab) {
-  //     case 'pending': return order.status === 'pending'
-  //     case 'active': return ['accepted', 'preparing', 'ready'].includes(order.status)
-  //     case 'completed': return ['completed', 'cancelled'].includes(order.status)
-  //     default: return true
-  //   }
-  // })
+  const filteredOrders = data.filter(order => {
+    switch (activeTab) {
+      case 'pending': return order.status === 'pending'
+      case 'active': return ['accepted', 'preparing', 'ready'].includes(order.status)
+      case 'completed': return ['completed', 'cancelled'].includes(order.status)
+      default: return true
+    }
+  })
 
   const onRefresh = () => {
     setRefreshing(true)
@@ -61,7 +60,7 @@ export default function Orders() {
   }
 
  
-
+console.log('Filtered Orders:', data);
   return (
     <View className="flex-1 bg-gray-50">
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
@@ -102,7 +101,7 @@ export default function Orders() {
           <View className="flex-row justify-between items-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4">
             <View className="flex-1 items-center">
               <Text className="text-2xl font-bold text-blue-600" style={{ fontFamily: 'Cairo_700Bold' }}>
-                {/* {orders.filter(o => o.status === 'pending').length} */}
+                {orders.filter(o => o.status === 'pending').length}
               </Text>
               <Text className="text-blue-600 text-xs" style={{ fontFamily: 'Cairo_400Regular' }}>
                 Pending
@@ -111,7 +110,7 @@ export default function Orders() {
             <View className="w-px h-8 bg-blue-200" />
             <View className="flex-1 items-center">
               <Text className="text-2xl font-bold text-orange-600" style={{ fontFamily: 'Cairo_700Bold' }}>
-                {/* {orders.filter(o => ['accepted', 'preparing', 'ready'].includes(o.status)).length} */}
+                {orders.filter(o => ['accepted', 'preparing', 'ready'].includes(o.status)).length}
               </Text>
               <Text className="text-orange-600 text-xs" style={{ fontFamily: 'Cairo_400Regular' }}>
                 Active
@@ -120,7 +119,7 @@ export default function Orders() {
             <View className="w-px h-8 bg-blue-200" />
             <View className="flex-1 items-center">
               <Text className="text-2xl font-bold text-green-600" style={{ fontFamily: 'Cairo_700Bold' }}>
-                {/* {orders.filter(o => o.status === 'completed').length} */}
+                {orders.filter(o => o.status === 'completed').length}
               </Text>
               <Text className="text-green-600 text-xs" style={{ fontFamily: 'Cairo_400Regular' }}>
                 Completed
@@ -178,17 +177,80 @@ export default function Orders() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
+        {filteredOrders.length === 0 ? (
+          /* Enhanced Empty State */
+          <View className="flex-1 justify-center items-center px-6" style={{ minHeight: 400 }}>
+            <View className="bg-white rounded-3xl p-8 items-center shadow-sm w-full max-w-sm">
+              <View className="w-24 h-24 bg-blue-100 rounded-full items-center justify-center mb-6">
+                <Ionicons name="receipt" size={48} color="#3B82F6" />
+              </View>
+              
+              <Text
+                className="text-gray-800 text-xl font-bold mb-3 text-center"
+                style={{ fontFamily: 'Cairo_700Bold' }}
+              >
+                {t('no_orders_found')}
+              </Text>
+              
+              <Text
+                className="text-gray-500 text-center mb-6 leading-6"
+                style={{ fontFamily: 'Cairo_400Regular' }}
+              >
+                {t('orders_will_appear_here')}
+              </Text>
 
-        {data && data.length > 0 ? (<>
-        
-        {data.map((order: Order) => (<>
-        
-        <OrderItem key={order.id} order={order} />
-        </>))}
-        
-        
-        </>):(<></>)}
-       
+              <View className="bg-blue-50 rounded-2xl p-4 w-full">
+                <View className="flex-row items-center justify-center">
+                  <Ionicons name="information-circle" size={20} color="#3B82F6" />
+                  <Text
+                    className="text-blue-700 font-medium ml-2 text-center"
+                    style={{ fontFamily: 'Cairo_500Medium' }}
+                  >
+                    Orders will show here when received
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        ) : (
+          /* Enhanced Orders List */
+          <View className="px-6 py-6">
+            {/* List Header */}
+            <View className="bg-white rounded-2xl p-4 mb-6 shadow-sm">
+              <View className="flex-row justify-between items-center">
+                <View>
+                  <Text
+                    className="text-lg font-bold text-gray-800"
+                    style={{ fontFamily: 'Cairo_700Bold' }}
+                  >
+                    {activeTab === 'all' ? 'All Orders' : 
+                     activeTab === 'pending' ? 'Pending Orders' :
+                     activeTab === 'active' ? 'Active Orders' : 'Completed Orders'}
+                  </Text>
+                  <Text
+                    className="text-gray-500 mt-1"
+                    style={{ fontFamily: 'Cairo_400Regular' }}
+                  >
+                    {filteredOrders.length} {filteredOrders.length === 1 ? 'order' : 'orders'}
+                  </Text>
+                </View>
+                
+                <View className="flex-row items-center bg-green-100 px-3 py-2 rounded-xl">
+                  <View className="w-2 h-2 bg-green-500 rounded-full mr-2"></View>
+                  <Text
+                    className="text-green-700 font-medium text-sm"
+                    style={{ fontFamily: 'Cairo_500Medium' }}
+                  >
+                    Live Updates
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            {/* Orders Cards */}
+           
+          </View>
+        )}
       </ScrollView>
     </View>
   )

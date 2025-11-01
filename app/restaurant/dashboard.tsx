@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useRouter } from 'expo-router'
 import { AuthContext } from '@/context/auth_context'
 import DashboardItemButton from '@/items/dashboard_item_button'
+import NotificationIcon from '@/components/NotificationIcon'
 
 
 export default function dashboard() {
@@ -28,9 +29,7 @@ export default function dashboard() {
                             {t('resturant.manageYourRestaurant')}
                         </Text>
                     </View>
-                    <TouchableOpacity className="w-10 h-10 bg-blue-100 rounded-full items-center justify-center">
-                        <Ionicons name="notifications" size={20} color="#3B82F6" />
-                    </TouchableOpacity>
+                    <NotificationIcon />
                 </View>
 
             </View>
@@ -94,21 +93,19 @@ export default function dashboard() {
                         />
 
 
-
-
-                        <TouchableOpacity
+                        <DashboardItemButton
                             onPress={() => router.push('/restaurant/orders')}
-                            className="bg-white rounded-xl p-4 flex-1 mx-1 shadow-sm items-center">
-                            <Ionicons name="list" size={32} color="#10B981" />
-                            <Text className="text-gray-800 mt-2 text-center font-medium">{t('resturant.viewOrders')}</Text>
-                        </TouchableOpacity>
+                            icon={<Ionicons name="list" size={32} color="#10B981" />}
+                            title={t('resturant.viewOrders')}
+                        />
 
 
+                        <DashboardItemButton
+                            onPress={() => router.push('/setting')}
+                            icon={<Ionicons name="settings" size={32} color="#8B5CF6" />}
+                            title={t('resturant.settings')}
+                        />
 
-                        <TouchableOpacity className="bg-white rounded-xl p-4 flex-1 ml-2 shadow-sm items-center">
-                            <Ionicons name="settings" size={32} color="#8B5CF6" />
-                            <Text className="text-gray-800 mt-2 text-center font-medium">{t('resturant.settings')}</Text>
-                        </TouchableOpacity>
                     </View>
                 </View>
 
