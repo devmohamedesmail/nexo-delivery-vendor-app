@@ -4,13 +4,13 @@ import { useFonts } from 'expo-font';
 import { useFonts as useGoogleFonts, Cairo_400Regular, Cairo_600SemiBold, Cairo_700Bold } from '@expo-google-fonts/cairo';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { useContext, useEffect } from 'react';
+// import 'react-native-reanimated';
 import '../global.css'
 import '../i18n'; // Initialize i18n
 
 import { useColorScheme } from '@/components/useColorScheme';
-import AuthProvider from '@/context/auth_context';
+import AuthProvider, { AuthContext } from '@/context/auth_context';
 import ToastManager from 'toastify-react-native'
 
 
@@ -61,6 +61,9 @@ export default function RootLayout() {
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
+
+
+
   return (
     <AuthProvider>
 
@@ -70,18 +73,18 @@ function RootLayoutNav() {
         >
 
 
-         <Stack.Screen name="restaurant/dashboard" options={{ headerShown: false }} />
+          {/* <Stack.Screen name="restaurant/dashboard" options={{ headerShown: false }} />
 
           <Stack.Screen name="auth/login" options={{ headerShown: false }} />
           <Stack.Screen name="auth/register" options={{ headerShown: false }} />
-         
-          
+
+
           <Stack.Screen name="account" options={{ headerShown: false }} />
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="restaurant/menu" options={{ headerShown: false }} />
           <Stack.Screen name="restaurant/orders" options={{ headerShown: false }} />
           <Stack.Screen name="restaurant/meal" options={{ headerShown: false }} />
-         
+ */}
 
 
           {/* <Stack.Screen name="auth/login" options={{ headerShown: false }} />

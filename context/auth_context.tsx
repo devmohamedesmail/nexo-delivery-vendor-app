@@ -48,14 +48,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     // handle register user
-    const handle_register = async (name: string, identifier: string, password: string, role: string) => {
+    const handle_register = async (name: string, identifier: string, password: string, role_id: string) => {
         try {
-            console.log(name, identifier, password, role);
+            console.log(name, identifier, password, role_id);
             const response = await axios.post(`${config.URL}/auth/register`, {
                 name,
                 identifier,
                 password,
-                role
+                role_id
             });
             
             const user = response.data;

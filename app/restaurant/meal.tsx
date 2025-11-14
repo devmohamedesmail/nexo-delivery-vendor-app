@@ -1,5 +1,5 @@
 import CustomButton from '@/components/custom/custombutton'
-import CustomInput from '@/components/custom/custominput'
+import CustomInput from '@/components/custom/Input'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import React, { useContext, useState } from 'react'

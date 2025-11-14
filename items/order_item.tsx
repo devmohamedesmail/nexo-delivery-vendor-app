@@ -119,8 +119,8 @@ export default function OrderItem({ order }: { order: any }) {
                     <View className="bg-gray-50 rounded-xl p-4">
 
                         {/* order item */}
-                        {order && order.order && order.order.map((item: any) => (
-                            <View className={`flex-row justify-between items-center py-3}`}>
+                        {order && order.order && order.order.map((item:any, index:any) => (
+                            <View key={index} className={`flex-row justify-between items-center py-3}`}>
                                 <View className="flex-row items-center flex-1">
                                     <View className="w-8 h-8 bg-orange-100 rounded-full items-center justify-center mr-3">
                                         <Text

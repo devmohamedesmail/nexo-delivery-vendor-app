@@ -4,9 +4,10 @@ import { useTranslation } from 'react-i18next'
 import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 import { Toast } from 'toastify-react-native'
-import CustomLoading from '@/components/custom/customloading'
+import CustomLoading from '@/components/custom/Loading'
 import useFetch from '@/hooks/useFetch'
 import OrderItem from '@/items/order_item'
+import NotificationIcon from '@/components/NotificationIcon'
 
 interface OrderItem {
   id: number
@@ -53,7 +54,7 @@ export default function Orders() {
   if (loading) {
     return (
       <CustomLoading 
-          variant="spinner" 
+         
           size="large" 
           text={t('loading_orders')} 
         />
@@ -92,9 +93,7 @@ export default function Orders() {
             </Text>
           </View>
           
-          <View className="w-10 h-10 bg-blue-100 rounded-full items-center justify-center">
-            <Ionicons name="notifications" size={20} color="#3B82F6" />
-          </View>
+          <NotificationIcon />
         </View>
 
         {/* Stats Bar */}

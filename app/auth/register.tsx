@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import CustomInput from '@/components/custom/custominput'
+import CustomInput from '@/components/custom/Input'
 import { AuthContext } from '@/context/auth_context'
 import AuthHeader from '@/components/auth_header'
 import CustomButton from '@/components/custom/custombutton'
@@ -14,13 +14,13 @@ import { Toast } from 'toastify-react-native'
 import { useRouter } from 'expo-router'
 import Logo from '@/components/logo'
 
-type UserRole = 'restaurant_owner' | 'driver'
+type UserRole = 3 | 5 // 3 for store_owner, 5 for driver
 
 interface RegisterFormValues {
     name: string
     identifier: string
     password: string
-    role: UserRole | ''
+    role_id: number | string
 }
 
 export default function Register() {
@@ -41,8 +41,8 @@ export default function Register() {
         password: Yup.string()
             .min(6, t('password_min'))
             .required(t('password_required')),
-        role: Yup.string()
-            .oneOf(['restaurant_owner', 'driver'], t('role_required'))
+        role_id: Yup.number()
+            .oneOf([3, 5], t('role_required'))
             .required(t('role_required'))
     })
 
@@ -51,7 +51,7 @@ export default function Register() {
             name: '',
             identifier: '',
             password: '',
-            role: ''
+            role_id: ''
         },
         validationSchema,
         onSubmit: async (values) => {
@@ -59,7 +59,7 @@ export default function Register() {
 
             try {
 
-                const result = await handle_register(values.name, values.identifier, values.password, values.role)
+                const result = await handle_register(values.name, values.identifier, values.password, values.role_id)
                 if (result.success) {
 
                     Toast.show({
@@ -69,9 +69,9 @@ export default function Register() {
                         visibilityTime: 3000,
                     });
 
-                    if (values.role === 'restaurant_owner') {
+                    if (values.role_id === 3) {
                         setTab('2')
-                    } else if (values.role === 'driver') {
+                    } else if (values.role_id === 5) {
                         setTab('3')
                     }
                 } else {
@@ -95,12 +95,12 @@ export default function Register() {
 
     const roleOptions: { value: UserRole; label: string; icon: string }[] = [
         {
-            value: 'restaurant_owner',
+            value: 3,
             label: t('auth.restaurant_owner'),
             icon: 'restaurant-outline'
         },
         {
-            value: 'driver',
+            value: 5,
             label: t('auth.driver'),
             icon: 'car-outline'
         }
@@ -179,37 +179,37 @@ export default function Register() {
                                         {roleOptions.map((option) => (
                                             <TouchableOpacity
                                                 key={option.value}
-                                                onPress={() => formik.setFieldValue('role', option.value)}
-                                                className={`border rounded-xl p-4 mb-3 flex-row items-center ${formik.values.role === option.value
+                                                onPress={() => formik.setFieldValue('role_id', option.value)}
+                                                className={`border rounded-xl p-4 mb-3 flex-row items-center ${formik.values.role_id === option.value
                                                     ? 'border-primary bg-black-50'
                                                     : 'border-gray-200 bg-gray-50'
                                                     }`}
                                             >
-                                                <View className={`w-10 h-10 rounded-full items-center justify-center mr-4 ${formik.values.role === option.value
+                                                <View className={`w-10 h-10 rounded-full items-center justify-center mr-4 ${formik.values.role_id === option.value
                                                     ? 'bg-blue-100'
                                                     : 'bg-gray-100'
                                                     }`}>
                                                     <Ionicons
                                                         name={option.icon as any}
                                                         size={20}
-                                                        color={formik.values.role === option.value ? 'red' : '#6B7280'}
+                                                        color={formik.values.role_id === option.value ? 'red' : '#6B7280'}
                                                     />
                                                 </View>
-                                                <Text className={`flex-1 font-medium arabic-font ${formik.values.role === option.value
+                                                <Text className={`flex-1 font-medium arabic-font ${formik.values.role_id === option.value
                                                     ? 'text-priamry'
                                                     : 'text-gray-700'
                                                     }`}>
                                                     {option.label}
                                                 </Text>
-                                                {formik.values.role === option.value && (
+                                                {formik.values.role_id === option.value && (
                                                     <Ionicons name="checkmark-circle" size={24} color="#0c0c0cff" />
                                                 )}
                                             </TouchableOpacity>
                                         ))}
                                     </View>
-                                    {formik.touched.role && formik.errors.role && (
+                                    {formik.touched.role_id && formik.errors.role_id && (
                                         <Text className="text-red-500 text-sm mt-2">
-                                            {formik.errors.role}
+                                            {formik.errors.role_id}
                                         </Text>
                                     )}
                                 </View>

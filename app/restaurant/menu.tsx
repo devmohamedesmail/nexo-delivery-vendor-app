@@ -6,7 +6,7 @@ import { useRouter } from 'expo-router'
 import axios from 'axios'
 import { Toast } from 'toastify-react-native'
 import MenuItem from '@/items/mealitem'
-import CustomLoading from '@/components/custom/customloading'
+import CustomLoading from '@/components/custom/Loading'
 import CustomHeader from '@/components/custom/customheader'
 import useFetch from '@/hooks/useFetch'
 
