@@ -31,7 +31,7 @@ export default function Home() {
   }
 
   // Show appropriate home screen based on user role
-  if (auth?.user?.role.role === 5) {
+  if (auth?.user?.role.role === "driver") {
     return <DriverHomeScreen />
   } else if (auth?.user?.role.role === "store_owner") {
     return <StoreHomeScreen />
@@ -39,7 +39,7 @@ export default function Home() {
     // Fallback for unknown role
     return (
       <SafeAreaView className="flex-1 bg-white justify-center items-center">
-        <Text className="text-gray-600">Unknown user role fg
+        <Text className="text-gray-600">
           {auth?.user?.role.role}
         </Text>
       </SafeAreaView>

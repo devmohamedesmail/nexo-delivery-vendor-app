@@ -7,7 +7,7 @@ import * as Yup from 'yup'
 import CustomInput from '@/components/custom/Input'
 import { AuthContext } from '@/context/auth_context'
 import AuthHeader from '@/components/auth_header'
-import CustomButton from '@/components/custom/custombutton'
+import CustomButton from '@/components/custom/Button'
 import Resturant_Register from '@/components/resturant_register'
 import DriverRegister from '@/components/driver_register'
 import { Toast } from 'toastify-react-native'
@@ -35,9 +35,10 @@ export default function Register() {
         name: Yup.string()
             .min(2, t('name_required'))
             .required(t('name_required')),
-        identifier: Yup.string()
-            .matches(/^[0-9]{10,15}$/, t('phone_invalid'))
-            .required(t('phone_required')),
+        // identifier: Yup.string()
+        //     .matches(/^[0-9]{10,15}$/, t('phone_invalid'))
+        //     .required(t('phone_required')),
+        identifier: Yup.string().email(t('identifier_invalid')).required(t('identifier_required')),
         password: Yup.string()
             .min(6, t('password_min'))
             .required(t('password_required')),

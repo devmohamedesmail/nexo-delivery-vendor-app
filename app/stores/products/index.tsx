@@ -3,7 +3,7 @@ import { View, Text, ScrollView, TouchableOpacity, RefreshControl, Modal, Keyboa
 import { Ionicons } from '@expo/vector-icons'
 import Input from '@/components/custom/Input'
 import CustomTextArea from '@/components/custom/customtextarea'
-import CustomButton from '@/components/custom/custombutton'
+import CustomButton from '@/components/custom/Button'
 import Select from '@/components/custom/Select'
 import CustomImagePicker from '@/components/custom/customimagepicker'
 import { useFormik } from 'formik'

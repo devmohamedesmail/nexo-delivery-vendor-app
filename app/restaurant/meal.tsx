@@ -1,4 +1,4 @@
-import CustomButton from '@/components/custom/custombutton'
+import CustomButton from '@/components/custom/Button'
 import CustomInput from '@/components/custom/Input'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'

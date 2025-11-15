@@ -69,9 +69,23 @@ export default function RestaurantHomeScreen() {
 
   return (
     <>
-      <View className="flex-1 bg-gray-50 pt-10">
+      <SafeAreaView className="flex-1 bg-gray-50 ">
         <StatusBar barStyle="dark-content" backgroundColor="#F9FAFB" />
-        {profileData ? (
+
+        <View className="flex-row items-center justify-between px-4 py-4 bg-white shadow-sm">
+          <View style={{ width: 32 }} />
+          <Text className="text-lg font-bold text-gray-800">{t('store.homeTitle', { defaultValue: 'Driver Home' })}</Text>
+          <TouchableOpacity
+            onPress={() => router.push('/account')}
+            className="p-2 rounded-full bg-primary/10"
+            accessibilityLabel={t('account.profile')}
+          >
+            <Ionicons name="person-circle-outline" size={28} color="#fd4a12" />
+          </TouchableOpacity>
+        </View>
+
+
+        {profileData?.data?.store ? (
           <>
             <ScrollView className="flex-1 p-4">
               {/* Store Info Header */}
@@ -189,7 +203,7 @@ export default function RestaurantHomeScreen() {
           </>
         )}
         {profileLoading ? <Loading /> : null}
-      </View>
+      </SafeAreaView>
     </>
   )
 }

@@ -10,7 +10,7 @@ import CustomHeader from '@/components/custom/customheader'
 import Select from '@/components/custom/Select'
 import Loading from '@/components/custom/Loading'
 import Input from '@/components/custom/Input'
-import CustomButton from '@/components/custom/custombutton'
+import CustomButton from '@/components/custom/Button'
 import CustomImagePicker from '@/components/custom/customimagepicker'
 import { Toast } from 'toastify-react-native'
 

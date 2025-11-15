@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 import CustomInput from '@/components/custom/Input'
-import CustomButton from '@/components/custom/custombutton'
+import CustomButton from '@/components/custom/Button'
 import { AuthContext } from '@/context/auth_context'
 import Logo from '@/components/logo'
 import { Toast } from 'toastify-react-native'
@@ -27,16 +27,7 @@ export default function Login() {
       password: '',
     },
     validationSchema: Yup.object({
-      identifier: Yup.string()
-        .required(t('phone_required'))
-        .test('email-or-phone', t('phone_invalid'), function (value) {
-          if (!value) return false;
-          // Check if it's a valid email
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          // Check if it's a valid phone number
-          const phoneRegex = /^[0-9]{10,15}$/;
-          return emailRegex.test(value) || phoneRegex.test(value);
-        }),
+       identifier: Yup.string().email(t('identifier_invalid')).required(t('identifier_required')),
       password: Yup.string()
         .required(t('password_required'))
         .min(6, t('password_min')),

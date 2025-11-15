@@ -3,7 +3,7 @@ import { View, Text, ScrollView, TouchableOpacity, RefreshControl, Modal, Keyboa
 import { Ionicons } from '@expo/vector-icons'
 import Input from '@/components/custom/Input'
 import CustomTextArea from '@/components/custom/customtextarea'
-import CustomButton from '@/components/custom/custombutton'
+import CustomButton from '@/components/custom/Button'
 import Loading from '@/components/custom/Loading'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -131,7 +131,6 @@ export default function Categories() {
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-      
       {/* Professional Header */}
       <View className="bg-white px-4 py-4 shadow-sm">
         <View className="flex-row items-center justify-between">
@@ -236,7 +235,7 @@ export default function Categories() {
       {/* Floating Add Button */}
       <TouchableOpacity
         onPress={openAddModal}
-        className="absolute bottom-6 right-6 bg-primary w-16 h-16 rounded-full items-center justify-center shadow-lg"
+        className="absolute bottom-24 right-6 bg-primary w-16 h-16 rounded-full items-center justify-center shadow-lg"
         style={{ elevation: 5 }}
       >
         <Ionicons name="add" size={32} color="white" />

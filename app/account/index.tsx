@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { View, Text, ScrollView, TouchableOpacity, Switch, StatusBar  , Button} from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Switch, StatusBar  , Button, Alert} from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
@@ -7,6 +7,7 @@ import Modal from 'react-native-modal';
 import LanguageSwitcher from '@/components/LanguageSwitcher'
 import { AuthContext } from '@/context/auth_context'
 import CustomHeader from '@/components/custom/customheader'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 interface SettingItem {
   id: string
@@ -36,21 +37,31 @@ export default function Account() {
   const [soundEffects, setSoundEffects] = useState(true)
   const [autoAcceptOrders, setAutoAcceptOrders] = useState(false)
 
-  const handleLogout = async () => {
-    await handle_logout()
-    setLogoutModalVisible(false)
-    router.replace('/auth/login')
+
+
+
+
+
+ const logout = async () => {
+  
+    Alert.alert(t('account.logout'),
+      t('account.logout_confirmation'),
+      [
+        {
+          text: t('auth.cancel'),
+          style: 'cancel'
+        },
+        {
+          text: t('auth.confirm'),
+          onPress: async () => {
+             await handle_logout()
+             router.replace('/auth/login')
+          },
+          style: 'destructive'
+        }
+      ]
+    );    
   }
-
-  const handleDeleteAccount = () => {
-    // Handle account deletion logic here
-    setDeleteAccountModalVisible(false)
-  }
-
-
- const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
 
 
 
@@ -187,7 +198,7 @@ export default function Account() {
           subtitle: t('account.sign_out_account'),
           icon: 'log-out-outline',
           type: 'action' as const,
-          action: () => setLogoutModalVisible(true)
+          action: () => logout()
         },
         {
           id: 'account.delete_account',
@@ -267,23 +278,13 @@ export default function Account() {
   }
 
   return (
-    <View className="flex-1 bg-gray-50">
+    <SafeAreaView className="flex-1 bg-gray-50">
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
 
       {/* Header */}
     
       <CustomHeader title={t('account.account')} />
 
-
-      <Button title="Show modal" onPress={toggleModal} />
-
-      <Modal isVisible={isModalVisible}>
-        <View style={{flex: 1}}>
-          <Text>Hello!</Text>
-
-          <Button title="Hide modal" onPress={toggleModal} />
-        </View>
-      </Modal>
 
       {/* Settings Content */}
       <ScrollView className="flex-1">
@@ -360,124 +361,12 @@ export default function Account() {
             className="text-gray-400 text-sm"
             style={{ fontFamily: 'Cairo_400Regular' }}
           >
-            {t('app_version')} 1.0.0
+            {t('account.app_version')} 1.0.0
           </Text>
         </View>
       </ScrollView>
 
-      {/* Logout Modal */}
-      <Modal
-        isVisible={logoutModalVisible}
-        onBackdropPress={() => setLogoutModalVisible(false)}
-        onBackButtonPress={() => setLogoutModalVisible(false)}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
-        backdropOpacity={0.5}
-        style={{ margin: 0, justifyContent: 'flex-end' }}
-      >
-        <View className="bg-white rounded-t-3xl p-6">
-          <View className="items-center mb-6">
-            <View className="w-16 h-16 bg-orange-100 rounded-full items-center justify-center mb-4">
-              <Ionicons name="log-out-outline" size={32} color="#F97316" />
-            </View>
-            <Text
-              className="text-xl font-bold text-gray-800 text-center"
-              style={{ fontFamily: 'Cairo_700Bold' }}
-            >
-              {t('logout')}
-            </Text>
-            <Text
-              className="text-gray-600 text-center mt-2"
-              style={{ fontFamily: 'Cairo_400Regular' }}
-            >
-              {t('logoutConfirm')}
-            </Text>
-          </View>
-
-          <View className="flex-row gap-3">
-            <TouchableOpacity
-              onPress={() => setLogoutModalVisible(false)}
-              className="flex-1 bg-gray-100 py-4 rounded-xl"
-            >
-              <Text
-                className="text-gray-700 text-center font-semibold"
-                style={{ fontFamily: 'Cairo_600SemiBold' }}
-              >
-                {t('cancel')}
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={handleLogout}
-              className="flex-1 bg-orange-500 py-4 rounded-xl"
-            >
-              <Text
-                className="text-white text-center font-semibold"
-                style={{ fontFamily: 'Cairo_600SemiBold' }}
-              >
-                {t('logout')}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
-      {/* Delete Account Modal */}
-      <Modal
-        isVisible={deleteAccountModalVisible}
-        onBackdropPress={() => setDeleteAccountModalVisible(false)}
-        onBackButtonPress={() => setDeleteAccountModalVisible(false)}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
-        backdropOpacity={0.5}
-        style={{ margin: 0, justifyContent: 'flex-end' }}
-      >
-        <View className="bg-white rounded-t-3xl p-6">
-          <View className="items-center mb-6">
-            <View className="w-16 h-16 bg-red-100 rounded-full items-center justify-center mb-4">
-              <Ionicons name="trash-outline" size={32} color="#EF4444" />
-            </View>
-            <Text
-              className="text-xl font-bold text-gray-800 text-center"
-              style={{ fontFamily: 'Cairo_700Bold' }}
-            >
-              {t('delete_account')}
-            </Text>
-            <Text
-              className="text-gray-600 text-center mt-2"
-              style={{ fontFamily: 'Cairo_400Regular' }}
-            >
-              {t('delete_account_warning')}
-            </Text>
-          </View>
-
-          <View className="flex-row gap-3">
-            <TouchableOpacity
-              onPress={() => setDeleteAccountModalVisible(false)}
-              className="flex-1 bg-gray-100 py-4 rounded-xl"
-            >
-              <Text
-                className="text-gray-700 text-center font-semibold"
-                style={{ fontFamily: 'Cairo_600SemiBold' }}
-              >
-                {t('cancel')}
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={handleDeleteAccount}
-              className="flex-1 bg-red-500 py-4 rounded-xl"
-            >
-              <Text
-                className="text-white text-center font-semibold"
-                style={{ fontFamily: 'Cairo_600SemiBold' }}
-              >
-                {t('delete')}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-    </View>
+     
+    </SafeAreaView>
   )
 }
