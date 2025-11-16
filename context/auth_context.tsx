@@ -33,6 +33,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 password: password
             });
             const user = response.data;
+            console.log("Logged in user:", identifier, password, user);
             await AsyncStorage.setItem('user', JSON.stringify(user));
             setAuth(user);
             return { 

@@ -208,7 +208,7 @@ export default function Products() {
 
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
-      <StatusBar barStyle="dark-content" backgroundColor="#F9FAFB" />
+      <StatusBar barStyle="light-content" backgroundColor="black" />
 
       {/* Show loading or error states */}
       {profileLoading ? (
@@ -371,7 +371,7 @@ export default function Products() {
 
       {/* Floating Add Button */}
       <TouchableOpacity
-        className="absolute bottom-6 right-6 bg-primary rounded-full w-16 h-16 items-center justify-center shadow-lg"
+        className="absolute bottom-24 right-6 bg-primary rounded-full w-16 h-16 items-center justify-center shadow-lg"
         onPress={openAddModal}
         activeOpacity={0.8}
       >
@@ -404,30 +404,25 @@ export default function Products() {
               <ScrollView showsVerticalScrollIndicator={false}>
                 {/* Product Name */}
                 <View className="mb-4">
-                  <Text className="text-sm font-medium text-gray-700 mb-2" style={{ fontFamily: 'Cairo_600SemiBold' }}>
-                    {t('products.product_name')}
-                  </Text>
+              
                   <Input
+                    label={t('products.product_name')}
                     placeholder={t('products.enter_product_name')}
                     value={formik.values.name}
                     onChangeText={formik.handleChange('name')}
+                    error={formik.touched.name && formik.errors.name ? formik.errors.name : ''}
                   />
-                  {formik.touched.name && formik.errors.name && (
-                    <Text className="text-red-500 text-xs mt-1" style={{ fontFamily: 'Cairo_400Regular' }}>
-                      {formik.errors.name}
-                    </Text>
-                  )}
+                  
                 </View>
 
                 {/* Product Description */}
                 <View className="mb-4">
-                  <Text className="text-sm font-medium text-gray-700 mb-2" style={{ fontFamily: 'Cairo_600SemiBold' }}>
-                    {t('products.product_description')}
-                  </Text>
                   <CustomTextArea
+                    label={t('products.product_description')}
                     placeholder={t('products.enter_product_description')}
                     value={formik.values.description}
                     onChangeText={formik.handleChange('description')}
+                    error={formik.touched.description && formik.errors.description ? formik.errors.description : ''}
                   />
                   {formik.touched.description && formik.errors.description && (
                     <Text className="text-red-500 text-xs mt-1" style={{ fontFamily: 'Cairo_400Regular' }}>
@@ -438,38 +433,30 @@ export default function Products() {
 
                 {/* Price */}
                 <View className="mb-4">
-                  <Text className="text-sm font-medium text-gray-700 mb-2" style={{ fontFamily: 'Cairo_600SemiBold' }}>
-                    {t('products.price')}
-                  </Text>
+                 
                   <Input
+                    label={t('products.price')}
                     placeholder={t('products.enter_price')}
                     value={formik.values.price}
                     onChangeText={formik.handleChange('price')}
                     keyboardType="numeric"
+                    error={formik.touched.price && formik.errors.price ? formik.errors.price : ''}
                   />
-                  {formik.touched.price && formik.errors.price && (
-                    <Text className="text-red-500 text-xs mt-1" style={{ fontFamily: 'Cairo_400Regular' }}>
-                      {formik.errors.price}
-                    </Text>
-                  )}
+                  
                 </View>
 
                 {/* Sale Price */}
                 <View className="mb-4">
-                  <Text className="text-sm font-medium text-gray-700 mb-2" style={{ fontFamily: 'Cairo_600SemiBold' }}>
-                    {t('products.sale_price', { defaultValue: 'Sale Price (Optional)' })}
-                  </Text>
+                 
                   <Input
+                    label={t('products.sale_price')}
                     placeholder={t('products.enter_sale_price', { defaultValue: 'Enter sale price' })}
                     value={formik.values.sale_price}
                     onChangeText={formik.handleChange('sale_price')}
                     keyboardType="numeric"
+                    error={formik.touched.sale_price && formik.errors.sale_price ? formik.errors.sale_price : ''}
                   />
-                  {formik.touched.sale_price && formik.errors.sale_price && (
-                    <Text className="text-red-500 text-xs mt-1" style={{ fontFamily: 'Cairo_400Regular' }}>
-                      {formik.errors.sale_price}
-                    </Text>
-                  )}
+                  
                 </View>
 
                 {/* Category Dropdown */}
@@ -492,10 +479,8 @@ export default function Products() {
 
                 {/* Product Image */}
                 <View className="mb-6">
-                  <Text className="text-sm font-medium text-gray-700 mb-2" style={{ fontFamily: 'Cairo_600SemiBold' }}>
-                    {t('products.product_image')}
-                  </Text>
                   <CustomImagePicker
+                    label={t('products.product_image')}
                     value={formik.values.image}
                     onImageSelect={(uri: string) => formik.setFieldValue('image', uri)}
                     placeholder={t('products.tap_to_select_image')}

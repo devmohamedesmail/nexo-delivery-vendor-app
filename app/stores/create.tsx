@@ -139,7 +139,7 @@ export default function Create() {
         if (response.data.success) {
           Toast.success(t('store.storeCreatedSuccess') || 'Store created successfully!')
           formik.resetForm()
-          router.back()
+          router.push('/')
         } else {
           Toast.error(response.data.message || t('store.storeCreationFailed'))
         }

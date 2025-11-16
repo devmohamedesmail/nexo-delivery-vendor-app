@@ -20,7 +20,7 @@ interface CustomImagePickerProps {
 export default function CustomImagePicker({
   label = "Image",
   placeholder = "Tap to select image",
-  changeText = "Tap to change image",
+  // changeText = "Tap to change image",
   value,
   onImageSelect,
   error,
@@ -125,12 +125,12 @@ export default function CustomImagePicker({
               className="w-20 h-20 rounded-lg mb-2"
               resizeMode="cover"
             />
-            <Text
+            {/* <Text
               className="text-blue-600 text-sm"
               
             >
               {changeText} 
-            </Text>
+            </Text> */}
           </View>
         ) : (
           <View className="items-center">

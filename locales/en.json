@@ -187,7 +187,9 @@
     "description_required": "Description is required",
     "price_required": "Price is required",
     "price_positive": "Price must be greater than 0",
-    "category_required": "Please select a category"
+    "category_required": "Please select a category",
+    "sale_price": "Sale Price",
+    "enter_sale_price": "Enter sale price"
   },
   "notifications": {
     "title": "Notifications",

@@ -188,7 +188,9 @@
     "description_required": "الوصف مطلوب",
     "price_required": "السعر مطلوب",
     "price_positive": "السعر يجب أن يكون أكبر من 0",
-    "category_required": "يرجى اختيار فئة"
+    "category_required": "يرجى اختيار فئة",
+     "sale_price": "سعر التخفيض",
+    "enter_sale_price": "أدخل سعر التخفيض"
   },
   "notifications": {
     "title": "الإشعارات",

@@ -1,7 +1,7 @@
 import { AuthContext } from '@/context/auth_context'
 import React, { useContext, useEffect } from 'react'
 import { Text } from 'react-native'
-import { Redirect } from 'expo-router'
+import { Link, Redirect } from 'expo-router'
 import StoreHomeScreen from '@/components/store/StoreHomeScreen'
 import DriverHomeScreen from '@/components/DriverHomeScreen'
 import Loading from '@/components/custom/Loading'
@@ -30,6 +30,8 @@ export default function Home() {
     return <Redirect href="/auth/login" />
   }
 
+  console.log("User Role:", auth);
+
   // Show appropriate home screen based on user role
   if (auth?.user?.role.role === "driver") {
     return <DriverHomeScreen />
@@ -39,8 +41,11 @@ export default function Home() {
     // Fallback for unknown role
     return (
       <SafeAreaView className="flex-1 bg-white justify-center items-center">
-        <Text className="text-gray-600">
+        <Text className="text-black">
           {auth?.user?.role.role}
+          fsdfsfasdf
+          <Link href="/auth/login">Go to Login</Link>
+          <Link href="/account">account</Link>
         </Text>
       </SafeAreaView>
     )

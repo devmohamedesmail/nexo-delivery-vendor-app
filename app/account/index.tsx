@@ -267,18 +267,8 @@ export default function Account() {
 
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
-      <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-
-      {/* Header */}
-
-      {/* <CustomHeader title={t('account.account')} /> */}
-      <View className='flex flex-row items-center justify-between px-4 py-2'>
-        <TouchableOpacity onPress={() => router.back()}>
-          <AntDesign name="arrow-left" size={20} color="black" />
-        </TouchableOpacity>
-        <Text className="ml-4 text-xl font-bold">{t('account.account')}</Text>
-        <Text></Text>
-      </View>
+      <StatusBar barStyle="light-content" backgroundColor="black" />
+      <CustomHeader title={t('account.account')} />
 
 
       {/* Settings Content */}

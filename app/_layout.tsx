@@ -12,6 +12,7 @@ import '../lib/i18n'; // Initialize i18n
 import { useColorScheme } from '@/components/useColorScheme';
 import AuthProvider, { AuthContext } from '@/context/auth_context';
 import ToastManager from 'toastify-react-native'
+import { SocketProvider } from '@/context/SocketContext';
 
 
 export {
@@ -66,34 +67,17 @@ function RootLayoutNav() {
 
   return (
     <AuthProvider>
+      <SocketProvider restaurantId={123}>
 
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack
-          screenOptions={{ headerShown: false }}
-        >
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack
+            screenOptions={{ headerShown: false }}
+          >
 
-
-          {/* <Stack.Screen name="restaurant/dashboard" options={{ headerShown: false }} />
-
-          <Stack.Screen name="auth/login" options={{ headerShown: false }} />
-          <Stack.Screen name="auth/register" options={{ headerShown: false }} />
-
-
-          <Stack.Screen name="account" options={{ headerShown: false }} />
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="restaurant/menu" options={{ headerShown: false }} />
-          <Stack.Screen name="restaurant/orders" options={{ headerShown: false }} />
-          <Stack.Screen name="restaurant/meal" options={{ headerShown: false }} />
- */}
-
-
-          {/* <Stack.Screen name="auth/login" options={{ headerShown: false }} />
-          <Stack.Screen name="auth/register" options={{ headerShown: false }} /> */}
-
-        </Stack>
-        <ToastManager />
-      </ThemeProvider>
-
+          </Stack>
+          <ToastManager />
+        </ThemeProvider>
+      </SocketProvider>
     </AuthProvider>
   );
 }

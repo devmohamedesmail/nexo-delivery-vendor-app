@@ -70,11 +70,11 @@ export default function RestaurantHomeScreen() {
   return (
     <>
       <SafeAreaView className="flex-1 bg-gray-50 ">
-        <StatusBar barStyle="dark-content" backgroundColor="#F9FAFB" />
+        <StatusBar barStyle="light-content" backgroundColor="black" />
 
         <View className="flex-row items-center justify-between px-4 py-4 bg-white shadow-sm">
           <View style={{ width: 32 }} />
-          <Text className="text-lg font-bold text-gray-800">{t('store.homeTitle', { defaultValue: 'Driver Home' })}</Text>
+          <Text className="text-2xl font-bold text-black-800">{t('store.homeTitle', { defaultValue: 'Driver Home' })}</Text>
           <TouchableOpacity
             onPress={() => router.push('/account')}
             className="p-2 rounded-full bg-primary/10"
@@ -96,10 +96,10 @@ export default function RestaurantHomeScreen() {
                     <Image source={{ uri: profileData?.data?.store?.logo }} style={{ width: 32, height: 32, borderRadius: 16 }} />
                   </View>
                   <View className="flex-1">
-                    <Text className="text-2xl font-bold text-gray-800" style={{ fontFamily: 'Cairo_700Bold' }}>
+                    <Text className="text-2xl font-bold text-black-800" >
                       {profileData?.data?.store?.name}
                     </Text>
-                    <Text className="text-gray-500 mt-1" style={{ fontFamily: 'Cairo_400Regular' }}>
+                    <Text className="text-black mt-1" >
                       {t('store.store_management')}
                     </Text>
                   </View>
@@ -130,7 +130,7 @@ export default function RestaurantHomeScreen() {
 
               {/* Management Section */}
               <View className="mb-4">
-                <Text className="text-lg font-bold text-gray-800 mb-3 px-2" style={{ fontFamily: 'Cairo_700Bold' }}>
+                <Text className="text-lg font-bold text-black-800 mb-3 px-2" >
                   {t('store.store_management')}
                 </Text>
 
@@ -151,10 +151,10 @@ export default function RestaurantHomeScreen() {
                         </View>
 
                         <View className="flex-1">
-                          <Text className="text-lg font-bold text-gray-800" style={{ fontFamily: 'Cairo_700Bold' }}>
+                          <Text className="text-lg font-bold text-gray-800" >
                             {card.title}
                           </Text>
-                          <Text className="text-gray-500 text-sm mt-1" style={{ fontFamily: 'Cairo_400Regular' }}>
+                          <Text className="text-gray-500 text-sm mt-1" >
                             {card.subtitle}
                           </Text>
                         </View>

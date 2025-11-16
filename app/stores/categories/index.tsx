@@ -64,11 +64,19 @@ export default function Categories() {
         if (editingCategory) {
           // Update category
           await axios.put(`${config.URL}/categories/update/${editingCategory.id}`, payload)
-          Toast.success(t('categories.category_updated_successfully'))
+          // Toast.success(t('categories.category_updated_successfully'))
+          Toast.show({
+            type: 'success',
+            text1: t('categories.category_updated_successfully'),
+          })
         } else {
           // Create category
           await axios.post(`${config.URL}/categories/create`, payload)
-          Toast.success(t('categories.category_added_successfully'))
+          // Toast.success(t('categories.category_added_successfully'))
+          Toast.show({
+            type: 'success',
+            text1: t('categories.category_added_successfully'),
+          })
         }
 
         resetForm()
@@ -77,7 +85,10 @@ export default function Categories() {
         refetchCategories()
         // fetchCategories()
       } catch (error: any) {
-        Toast.error(error?.response?.data?.message || t('categories.failed_to_save_category'))
+        Toast.show({
+          type: 'error',
+          text1: error?.response?.data?.message || t('categories.failed_to_save_category'),
+        })
       } finally {
         setSubmitting(false)
       }
