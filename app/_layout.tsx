@@ -13,6 +13,7 @@ import { useColorScheme } from '@/components/useColorScheme';
 import AuthProvider, { AuthContext } from '@/context/auth_context';
 import ToastManager from 'toastify-react-native'
 import { SocketProvider } from '@/context/SocketContext';
+import { LocationProvider } from '@/context/DriverLocationContext';
 
 
 export {
@@ -67,17 +68,15 @@ function RootLayoutNav() {
 
   return (
     <AuthProvider>
-      <SocketProvider restaurantId={123}>
-
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <Stack
-            screenOptions={{ headerShown: false }}
-          >
-
-          </Stack>
-          <ToastManager />
-        </ThemeProvider>
-      </SocketProvider>
+      <LocationProvider>
+        <SocketProvider restaurantId={123}>
+          <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+            <Stack screenOptions={{ headerShown: false }} >
+            </Stack>
+            <ToastManager />
+          </ThemeProvider>
+        </SocketProvider>
+      </LocationProvider>
     </AuthProvider>
   );
 }

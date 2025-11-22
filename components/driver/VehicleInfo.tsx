@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 
 export default function VehicleInfo({ profileData }: { profileData: any }) {
     const { t } = useTranslation()
+   
     return (
         <View className="mx-4 mt-8 p-6 bg-white rounded-2xl ">
             <View className="flex-row items-center mb-4">
@@ -38,7 +39,10 @@ export default function VehicleInfo({ profileData }: { profileData: any }) {
             </View>
 
             <View className="flex-row items-center mb-3">
-                <Image source={{ uri: `${profileData?.data?.driver.image}` }} style={{ width: 100, height: 100 }} />
+                <Image 
+                  source={{ uri: `${profileData?.data?.driver.image}` }} 
+                  className='rounded-full'
+                  style={{ width: 100, height: 100 }} />
             </View>
 
 

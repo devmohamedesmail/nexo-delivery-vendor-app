@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ScrollView, View, Text, TouchableOpacity, StatusBar, Image } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useTranslation } from 'react-i18next'
@@ -10,11 +10,9 @@ import { RefreshControl } from 'react-native'
 import useFetch from '@/hooks/useFetch'
 import Loading from '@/components/common/Loading'
 import NotificationIcon from '@/components/common/NotificationIcon'
-import { Try } from 'expo-router/build/views/Try'
-import axios from 'axios'
-import { Toast } from 'toastify-react-native'
 import VehicleInfo from '@/components/driver/VehicleInfo'
 import ToggleAvailbility from '@/components/driver/ToggleAvailbility'
+import { useDriverLocation } from '@/context/DriverLocationContext'
 
 export default function Home() {
   const { t, i18n } = useTranslation()
@@ -23,7 +21,7 @@ export default function Home() {
   const [refreshing, setRefreshing] = useState(false)
   const { data: profileData, refetch: refetchProfile } = useFetch(`/users/profile/${auth?.user?.id}`)
   const { loading: profileLoading, } = useFetch(`/users/profile/${auth?.user?.id}`)
-
+  const { startTracking, stopTracking } = useDriverLocation();
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true)
@@ -31,7 +29,12 @@ export default function Home() {
     setRefreshing(false)
   }, [refetchProfile])
 
- 
+
+
+  // useEffect(() => {
+  //   startTracking();
+  // }, [])
+
 
   return (
     <SafeAreaView className="flex-1 bg-gray-50" edges={["bottom"]}>
@@ -76,7 +79,7 @@ export default function Home() {
                 <VehicleInfo profileData={profileData} />
 
 
-               <ToggleAvailbility profileData={profileData} refetchProfile={refetchProfile} />
+                <ToggleAvailbility profileData={profileData} refetchProfile={refetchProfile} />
 
                 <View>
                   <TouchableOpacity
