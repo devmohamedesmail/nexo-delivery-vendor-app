@@ -132,13 +132,13 @@ export default function Categories() {
     setModalVisible(true)
   }
 
-  if (categoriesLoading) {
-    return (
-      <View className='flex-1'>
-        <Loading type="processing" />
-      </View>
-    )
-  }
+  // if (categoriesLoading) {
+  //   return (
+  //     <View className='flex-1'>
+  //       <Loading  />
+  //     </View>
+  //   )
+  // }
 
   return (
     <SafeAreaView className="flex-1 bg-gray-50" edges={["bottom"]}>
@@ -174,7 +174,8 @@ export default function Categories() {
         className="flex-1 p-4"
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#fd4a12']} />}
       >
-        {/* Stats Card */}
+        {categoriesLoading ? (<Loading />) : (<>
+         {/* Stats Card */}
         <View className="bg-white rounded-xl p-4 mb-4 shadow-sm">
           <View className="flex-row items-center justify-between">
             <View>
@@ -242,6 +243,9 @@ export default function Categories() {
             ))}
           </View>
         )}
+        
+        </>)}
+       
       </ScrollView>
 
       {/* Floating Add Button */}

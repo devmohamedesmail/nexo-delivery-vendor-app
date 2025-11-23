@@ -21,7 +21,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.dev.mohamed.esmail.tawsilaagent"
     },
     "web": {
       "bundler": "metro",
@@ -30,10 +31,15 @@
     },
     "plugins": [
       "expo-router"
-    
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "48fa654d-4e97-45fb-88aa-4e021753a2e1"
+      }
     }
   }
 }

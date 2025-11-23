@@ -11,7 +11,8 @@ import { AuthContext } from '@/context/auth_context'
 import Logo from '@/components/common/logo'
 import { Toast } from 'toastify-react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import CustomToast from '@/components/custom/Toast'
+import Skeleton from '@/components/common/Skeleton'
+
 
 
 export default function Login() {
@@ -47,7 +48,7 @@ export default function Login() {
         })
 
         const role = result.data.user.role.role;
-          
+
         if (role === 'store_owner') {
           router.replace('/stores')
         } else if (role === 'driver') {
@@ -56,7 +57,7 @@ export default function Login() {
           router.replace('/')
         }
         setIsLoading(false)
-      } catch (error:any) {
+      } catch (error: any) {
         setIsLoading(false)
         Toast.show({
           text1: t('auth.login_failed'),
@@ -87,7 +88,9 @@ export default function Login() {
           {/* Header */}
           <View className="pt-10 pb-8 px-6 bg-black">
 
-
+          
+            
+           
 
 
             {/* Logo/Brand Section */}

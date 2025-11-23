@@ -9,6 +9,7 @@ import useFetch from '@/hooks/useFetch'
 import { useRouter } from 'expo-router'
 import NoStore from '@/components/store/NoStore'
 import NotificationIcon from '@/components/common/NotificationIcon'
+import Skeleton from '@/components/common/Skeleton'
 
 interface ManagementCard {
     title: string
@@ -81,6 +82,8 @@ export default function Home() {
                     <Ionicons name="person-circle-outline" size={28} color="white" />
                 </TouchableOpacity>
             </View>
+
+
 
 
             {profileData?.data?.store ? (

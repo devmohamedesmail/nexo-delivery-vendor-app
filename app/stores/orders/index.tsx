@@ -1,12 +1,11 @@
 import useFetch from '@/hooks/useFetch'
 import React, { useContext, useState, useMemo } from 'react'
-import { View, Text, ScrollView, RefreshControl, ActivityIndicator, TouchableOpacity, FlatList, StatusBar } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, FlatList, StatusBar } from 'react-native'
 import { AuthContext } from '@/context/auth_context'
 import { useTranslation } from 'react-i18next'
 import { Ionicons } from '@expo/vector-icons'
-import { config } from '@/constants/config'
 import OrderItem from '@/components/store/OrderItem'
-import Loading from '@/components/custom/Loading'
+import Loading from '@/components/common/Loading'
 import { useRouter } from 'expo-router'
 import NoOrdersFound from '@/components/store/NoOrdersFound'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -78,7 +77,7 @@ export default function Orders() {
 
   return (
     <SafeAreaView className="flex-1 bg-gray-50" edges={["bottom"]}>
-      <StatusBar hidden={true} />
+      <StatusBar  />
 
 
       <View className='flex flex-row justify-between items-center pt-16 pb-5 px-5 bg-black/90'>
@@ -91,7 +90,7 @@ export default function Orders() {
       {loading ? (
         
         <View className='flex-1'>
-            <Loading message={t('orders.loading')} />
+            <Loading />
         </View>
         ) : (
         <>

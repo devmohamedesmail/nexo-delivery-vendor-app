@@ -21,11 +21,8 @@ export default function Header({ title }: { title?: string }) {
         <Text
           className="text-xl font-bold text-white"
         >
-
           {title}
         </Text>
-
-
       </View>
     </View>
   )
