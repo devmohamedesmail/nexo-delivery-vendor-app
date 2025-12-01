@@ -29,7 +29,7 @@ export default function Select({
 }: CustomDropdownProps) {
   const { i18n } = useTranslation()
   const [isModalVisible, setIsModalVisible] = useState(false)
-  
+  const { t } = useTranslation()
   const selectedOption = options.find(option => option.value === value)
   const isRTL = i18n.language === 'ar'
 
@@ -42,10 +42,9 @@ export default function Select({
     <View className='mb-5'>
       {label && (
         <Text 
-          style={{ fontFamily: 'Cairo_400Regular' }}
-          className={`mb-3 text-sm font-medium text-gray-700 ${isRTL ? 'text-right' : 'text-left'}`}
+          className={`mb-3 text-sm font-medium  text-black ${isRTL ? 'text-right' : 'text-left'}`}
         >
-          {label}
+          {label} 
         </Text>
       )}
       
@@ -161,7 +160,7 @@ export default function Select({
                 className="text-center text-gray-600"
                 style={{ fontFamily: 'Cairo_400Regular' }}
               >
-                Cancel
+                {t("common.close")}
               </Text>
             </TouchableOpacity>
           </Pressable>

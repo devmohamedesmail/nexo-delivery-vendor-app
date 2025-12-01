@@ -2,7 +2,7 @@
   "expo": {
     "name": "Tawsila Agent",
     "slug": "tawsila-agent",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "tawsilaagent",
@@ -14,7 +14,15 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "1.0.2",
+       "config": {
+        "googleMapsApiKey": "AIzaSyCWrI-BwVYZE6D7wzFCVeEuaKr6VR-6FGI"
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app needs access to your location to show nearby restaurants and provide ride services.",
+        "NSLocationAlwaysUsageDescription": "This app needs access to your location to provide better ride and delivery services."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -22,7 +30,18 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.dev.mohamed.esmail.tawsilaagent"
+      "package": "com.dev.mohamed.esmail.tawsilaagent",
+      "versionCode": 2,
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "FOREGROUND_SERVICE"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCWrI-BwVYZE6D7wzFCVeEuaKr6VR-6FGI"
+        }
+      }
     },
     "web": {
       "bundler": "metro",

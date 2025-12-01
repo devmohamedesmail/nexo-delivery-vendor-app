@@ -27,7 +27,9 @@
     "try_again": "Please try again.",
     "loading_failed": "Failed to load data",
     "retry": "Retry",
-    "home": "Home"
+    "home": "Home",
+    "close":" Close",
+    "noauthvarified": "Your account is not verified. Please login to continue."
   },
   "auth": {
     "email": "Email",

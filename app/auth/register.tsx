@@ -160,9 +160,9 @@ export default function Register() {
 
                         {/* Phone Number Input */}
                         <Input
-                            label={t('auth.identifier')}
-                            placeholder={t('auth.enterIdentifier')}
-                            type="phone"
+                            label={t('auth.email')}
+                            placeholder={t('auth.email')}
+                            type="email"
                             value={formik.values.identifier}
                             onChangeText={formik.handleChange('identifier')}
 

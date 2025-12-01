@@ -27,7 +27,9 @@
     "try_again": "يرجى المحاولة مرة أخرى.",
     "loading_failed": "فشل في تحميل البيانات",
     "retry": "إعادة المحاولة",
-    "home": "الرئيسية"
+    "home": "الرئيسية",
+    "close":" إغلاق",
+    "noauthvarified": "حسابك غير موثق. يرجى تسجيل الدخول للمتابعة."
   },
   "auth": {
     "email": "البريد الإلكتروني",
@@ -202,8 +204,8 @@
     "enter_product_description": "أدخل وصف المنتج",
     "price": "السعر",
     "enter_price": "أدخل السعر",
-    "category": "الفئة",
-    "select_category": "اختر فئة",
+    "category": " القسم ",
+    "select_category": "اختر القسم",
     "product_image": "صورة المنتج",
     "tap_to_select_image": "اضغط لاختيار صورة",
     "loading": "جاري التحميل...",
