@@ -190,7 +190,8 @@
     "failed_to_delete_category": "فشل في حذف القسم",
     "failed_to_fetch_categories": "فشل في جلب الأقسام",
     "name_required": "الاسم مطلوب",
-    "description_required": "الوصف مطلوب"
+    "description_required": "الوصف مطلوب",
+    "show_products": "عرض المنتجات"
   },
   "products": {
     "products": "المنتجات",

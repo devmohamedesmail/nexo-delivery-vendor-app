@@ -154,7 +154,7 @@ export default function OrderItem({ item, refetchOrders }: { item: any, refetchO
                     <View className="flex-row items-center mb-3">
                         <FontAwesome name="user" size={20} color={Colors.light.tabIconSelected} />
                         <Text className="text-gray-600 text-sm ml-2 flex-1" numberOfLines={1}>
-                            {item.user.name}
+                            {item?.user?.name}
                         </Text>
                     </View>
 

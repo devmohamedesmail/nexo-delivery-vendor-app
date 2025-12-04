@@ -191,7 +191,8 @@
     "failed_to_delete_category": "Failed to delete category",
     "failed_to_fetch_categories": "Failed to fetch categories",
     "name_required": "Name is required",
-    "description_required": "Description is required"
+    "description_required": "Description is required",
+    "show_products": "Show Products"
   },
   "products": {
     "products": "Products",
