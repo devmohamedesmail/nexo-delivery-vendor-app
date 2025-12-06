@@ -160,8 +160,8 @@ export default function Register() {
 
                         {/* Phone Number Input */}
                         <Input
-                            label={t('auth.email')}
-                            placeholder={t('auth.email')}
+                            label={t('auth.identifier')}
+                            placeholder={t('auth.identifier')}
                             type="email"
                             value={formik.values.identifier}
                             onChangeText={formik.handleChange('identifier')}
@@ -235,7 +235,7 @@ export default function Register() {
 
 
                         {/* Terms and Sign In Link */}
-                        <View className="mb-6">
+                        <View className="mb-10 py-10">
 
 
                             <View className="flex-row justify-center items-center">

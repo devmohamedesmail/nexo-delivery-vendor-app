@@ -5,6 +5,7 @@ import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/ui/Header";
 import { useTranslation } from "react-i18next";
+import ProductItem from "@/components/products/ProductItem";
 
 interface Product {
   id: number;
@@ -99,7 +100,7 @@ export default function show() {
       ) : (
         <FlatList
           data={products}
-          renderItem={renderProduct}
+          renderItem={({ item }) => <ProductItem product={item} />}
           keyExtractor={(item) => item.id.toString()}
           numColumns={2}
           contentContainerStyle={{ padding: 8 }}

@@ -118,8 +118,8 @@ export default function Login() {
             <View className="space-y-4">
               {/* Email/Phone Input */}
               <CustomInput
-                label={t('auth.email')}
-                placeholder={t('auth.email')}
+                label={t('auth.identifier')}
+                placeholder={t('auth.identifier')}
                 value={formik.values.identifier}
                 onChangeText={formik.handleChange('identifier')}
                 type="text"

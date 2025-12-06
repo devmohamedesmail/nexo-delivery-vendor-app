@@ -56,7 +56,7 @@ export default function ProductItem({
       {/*  product info  */}
       <View className="py-3 px-2">
         <Text className="font-bold text-lg text-center text-black">
-          {product.name}
+          {product?.name}
         </Text>
 
          <Text className="font-bold text-lg text-center text-black">
@@ -64,13 +64,13 @@ export default function ProductItem({
         </Text>
 
         <View>
-          {product.attributes.length === 0 ? (
+          {product?.attributes?.length === 0 ? (
             <Text>
               {product.price} {config.CURRENCY}{" "}
             </Text>
           ) : null}
 
-          {product.attributes && product.attributes.length > 0 && (
+          {product?.attributes && product?.attributes?.length > 0 && (
             <View className="mt-2">
               {product.attributes.map((attr: any) => (
                 <View key={attr.id} className="mb-1">
