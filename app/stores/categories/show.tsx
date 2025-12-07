@@ -6,6 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/ui/Header";
 import { useTranslation } from "react-i18next";
 import ProductItem from "@/components/products/ProductItem";
+import Layout from "@/components/ui/Layout";
 
 interface Product {
   id: number;
@@ -33,7 +34,7 @@ export default function show() {
  
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50" edges={["bottom"]}>
+    <Layout>
       <Header title={categoryName} />
       
       {loading ? (
@@ -43,7 +44,13 @@ export default function show() {
           </Text>
         </View>
       ) : (
-        <FlatList
+       <View>
+        <View className="flex flex-row justify-center items-center py-5">
+          <Text className="font-bold">
+            {t('products.products_count')} {products.length}
+          </Text>
+        </View>
+         <FlatList
           data={products}
           renderItem={({ item }) => <ProductItem product={item} />}
           keyExtractor={(item) => item.id.toString()}
@@ -61,7 +68,8 @@ export default function show() {
             </View>
           }
         />
+       </View>
       )}
-    </SafeAreaView>
+    </Layout>
   );
 }

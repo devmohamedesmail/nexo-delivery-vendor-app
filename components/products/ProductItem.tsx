@@ -29,32 +29,29 @@ export default function ProductItem({
   return (
     <View
       key={product.id}
-      className="bg-white rounded-xl  mb-3 shadow-sm w-[45%] mx-2"
+      className="bg-white rounded-xl mb-3 shadow-sm border border-gray-100 w-[45%] mx-2"
     >
       {/* product Image */}
       <View className="relative">
         {product.image ? (
           <Image
             source={{ uri: product.image }}
-            className="w-full h-44 rounded-lg mr-3"
+            className="w-full h-40 rounded-t-xl"
             resizeMode="cover"
           />
         ) : (
-          <View className="w-full h-44 rounded-lg bg-gray-100 items-center justify-center mr-3">
-            <Ionicons name="image-outline" size={32} color="#9CA3AF" />
+          <View className="w-full h-40 rounded-t-xl bg-gradient-to-b from-gray-50 to-gray-100 items-center justify-center">
+            <Ionicons name="image-outline" size={40} color="#D1D5DB" />
           </View>
         )}
 
-
-
-        <View className="absolute top-2 right-2">
+        <View className="absolute top-2 right-2 gap-2">
           <TouchableOpacity
             onPress={() => handleDelete(product.id)}
-
-            className=" bg-red-600 w-10 h-10 top-3 right-3 flex flex-row items-center justify-center rounded-full">
-            <Ionicons name="trash-outline" size={18} color="white" />
+            className="bg-red-500 w-9 h-9 items-center justify-center rounded-full shadow-md"
+          >
+            <Ionicons name="trash-outline" size={16} color="white" />
           </TouchableOpacity>
-
 
           <TouchableOpacity
             onPress={() =>
@@ -63,57 +60,81 @@ export default function ProductItem({
                 params: { data: JSON.stringify(product) },
               })
             }
-
-            className=" bg-green-600 mt-3 w-10 h-10 top-3 right-3 flex flex-row items-center justify-center rounded-full">
-            <Entypo name="edit" size={18} color="white" />
+            className="bg-primary w-9 h-9 items-center justify-center rounded-full shadow-md"
+          >
+            <Entypo name="edit" size={16} color="white" />
           </TouchableOpacity>
-
         </View>
       </View>
 
-      {/*  product info  */}
-      <View className="py-3 px-2">
-        <Text className="font-bold text-lg text-center text-black">
+      {/* Product Info */}
+      <View className="p-3">
+        <Text 
+          className="font-bold text-base text-gray-900 mb-2 text-center" 
+          style={{ fontFamily: "Cairo_600SemiBold" }}
+          numberOfLines={2}
+        >
           {product?.name}
         </Text>
 
-        <Text className="font-bold text-lg text-center text-black">
-          {product?.category?.title}
-        </Text>
+        {product?.category?.name && (
+          <Text 
+            className="text-xs text-primary text-center mb-2" 
+            style={{ fontFamily: "Cairo_400Regular" }}
+          >
+            {product?.category?.name}
+          </Text>
+        )}
 
-        <View>
-          {product?.attributes?.length === 0 ? (
-            <Text>
-              {product.price} {config.CURRENCY}{" "}
-            </Text>
-          ) : null}
-
-          {product?.attributes && product?.attributes?.length > 0 && (
-            <View className="mt-2">
+        {/* Price Display */}
+        <View className="mt-1">
+          {!product?.attributes || product?.attributes?.length === 0 ? (
+            <View className="bg-green-50 px-3 py-2 rounded-lg">
+              <Text 
+                className="text-center font-bold text-green-700 text-base" 
+                style={{ fontFamily: "Cairo_700Bold" }}
+              >
+                {product.price} {config.CURRENCY}
+              </Text>
+            </View>
+          ) : (
+            <View className="mt-1">
               {product.attributes.map((attr: any) => (
-                <View key={attr.id} className="mb-1">
-                  {/* <Text className="text-black font-bold mb-2">{attr.name}</Text> */}
-
-                  {attr.values && attr.values.length > 0 ? (
-                    <View className="flex flex-row flex-wrap">
+                <View key={attr.id} className="mb-2">
+                  <Text 
+                    className="text-xs text-gray-600 mb-1.5 text-center font-semibold" 
+                    style={{ fontFamily: "Cairo_600SemiBold" }}
+                  >
+                    {attr.name}
+                  </Text>
+                  {attr.values && attr.values.length > 0 && (
+                    <View className="flex-row flex-wrap justify-center gap-1">
                       {attr.values.map((val: any, index: number) => (
-                        <Text
-                          key={index}
-                          className="  mb-1 bg-primary text-xs px-2 mx-1 py-1 rounded-full text-white"
+                        <View 
+                          key={index} 
+                          className="bg-primary/90 px-2.5 py-1.5 rounded-lg border flex items-center border-primary/70"
                         >
-                          {val.value} - {val.price}
-                        </Text>
+                          <Text 
+                            className="text-xs text-white font-medium mb-2"  
+                          >
+                            {val.value}
+                          </Text>
+                          <Text 
+                            className="text-xs text-white font-bold" 
+                            
+                          >
+                            {val.price} {config.CURRENCY}
+                          </Text>
+                        </View>
                       ))}
                     </View>
-                  ) : null}
+                  )}
                 </View>
               ))}
             </View>
           )}
         </View>
       </View>
-
-    
     </View>
   );
 }

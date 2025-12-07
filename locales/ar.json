@@ -5,7 +5,7 @@
     "camera": "الكاميرا",
     "gallery": "المعرض",
     "cancel": "إلغاء",
-     "confirm": "تأكيد",
+    "confirm": "تأكيد",
     "ok": "حسناً",
     "confirming": "جارٍ التأكيد...",
     "error_happened": "حدث خطأ. يرجى المحاولة مرة أخرى.",
@@ -28,7 +28,7 @@
     "loading_failed": "فشل في تحميل البيانات",
     "retry": "إعادة المحاولة",
     "home": "الرئيسية",
-    "close":" إغلاق",
+    "close": " إغلاق",
     "noauthvarified": "حسابك غير موثق. يرجى تسجيل الدخول للمتابعة."
   },
   "auth": {
@@ -131,7 +131,7 @@
     "vehicle_color_required": "لون المركبة مطلوب",
     "vehicle_image_required": "صورة المركبة مطلوبة",
     "viewOrders": "عرض الطلبات",
-     "available": " متاح ",
+    "available": " متاح ",
     "unavailable": " غير متاح ",
     "toggleAvailability": "تبديل التوفر",
     "goOnline": "الاتصال بالإنترنت",
@@ -139,10 +139,10 @@
     "youAreOnline": "أنت الآن متصل بالإنترنت ويمكنك استقبال الطلبات",
     "youAreOffline": "أنت الآن غير متصل بالإنترنت ولن تستقبل الطلبات",
     "failedToUpdateStatus": "فشل في تحديث حالة التوفر",
-     "noTrips": "لا توجد رحلات بعد",
+    "noTrips": "لا توجد رحلات بعد",
     "noTripsDescription": "عندما تكمل الرحلات، ستظهر هنا"
   },
-   "driverOrders":{
+  "driverOrders": {
     "title": " طلبات السائق ",
     "from": "من",
     "to": "إلى",
@@ -244,7 +244,7 @@
     "update_product": "تحديث المنتج",
     "delete_product_confirmation": "هل أنت متأكد من حذف هذا المنتج؟",
     "delete": "حذف",
-      "products_count":" عدد المنتجات"
+    "products_count": " عدد المنتجات"
   },
   "notifications": {
     "title": "الإشعارات",
@@ -393,7 +393,15 @@
     "setOperatingHours": "حدد ساعات عمل متجرك",
     "selectStartTime": "اختر وقت البدء",
     "selectEndTime": "اختر وقت الانتهاء",
-    "deliveryDetails": "تفاصيل التوصيل"
+     "deliveryDetails": "تفاصيل التوصيل",
+     "update_store": "تحديث المتجر",
+     "updating_store": "جاري تحديث المتجر...",
+     "storeUpdatedSuccess": "تم تحديث المتجر بنجاح",
+     "storeUpdateFailed": "فشل تحديث المتجر",
+     "updateStoreButton": "تحديث المتجر",
+     "updateStoreSubtitle": "قم بتحديث معلومات متجرك",
+     "noStoreData": "لا توجد بيانات للمتجر",
+     "endTimeRequired": "وقت الإغلاق مطلوب"
   },
   "account": {
     "profile": "الملف الشخصي",
@@ -445,7 +453,7 @@
     "store_owner": " ( مالك المتجر ) ",
     "driver": " ( سائق )",
     "logouting": "تسجيل الخروج...",
-     "logout_successful": " تم تسجيل الخروج بنجاح",
+    "logout_successful": " تم تسجيل الخروج بنجاح",
     "logout_failed": "فشل تسجيل الخروج"
   }
 }

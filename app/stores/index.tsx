@@ -27,15 +27,6 @@ export default function Home() {
 
 
 
-
-<TouchableOpacity onPress={()=>router.push("/stores/create")}>
-  <Text>fdfsdfas</Text>
-</TouchableOpacity>
-
-
-
-
-
       {loading ? (
         <Loading />
       ) : (

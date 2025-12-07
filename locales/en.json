@@ -394,7 +394,15 @@
     "setOperatingHours": "Set your store's operating hours",
     "selectStartTime": "Select Start Time",
     "selectEndTime": "Select End Time",
-    "deliveryDetails": "Delivery Details"
+    "deliveryDetails": "Delivery Details",
+    "update_store": "Update Store",
+    "updating_store": "Updating Store...",
+    "storeUpdatedSuccess": "Store updated successfully",
+    "storeUpdateFailed": "Failed to update store",
+    "updateStoreButton": "Update Store",
+    "updateStoreSubtitle": "Update your store information",
+    "noStoreData": "No store data available",
+    "endTimeRequired": "End time is required"
   
   },
   "account": {

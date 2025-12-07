@@ -1,13 +1,25 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useStore } from "@/hooks/useStore";
+import { useRouter } from "expo-router";
 
 export default function StoreHeader() {
   const { t } = useTranslation();
   const { store } = useStore();
+  const router = useRouter();
   return (
-    <View className="bg-white rounded-xl p-6 mb-6 shadow-sm">
+    <View className="bg-white f rounded-xl p-6 mb-6 shadow-sm">
+      <View>
+        <TouchableOpacity className="" onPress={() =>
+          router.push({
+            pathname: "/stores/update",
+            params: { data: JSON.stringify(store) },
+          })
+        }>
+          <Text>{t("store.update_store")}</Text>
+        </TouchableOpacity>
+      </View>
       <View className="flex-row-reverse items-center mb-4">
         <View className="bg-primary/10 w-16 h-16 rounded-full items-center justify-center mr-4">
           <Image
