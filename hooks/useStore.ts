@@ -1,6 +1,6 @@
 
 import { useContext } from 'react';
-import { ProfileContext } from '@/context/ProfileContext';
+import { ProfileContext } from '@/context/profile-provider';
 
 
 

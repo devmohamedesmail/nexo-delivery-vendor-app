@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import { TouchableOpacity, View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { io,Socket } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 import useFetch from "@/hooks/useFetch";
 import { useStore } from "@/hooks/useStore";
 
 export default function NotificationIcon() {
   const router = useRouter();
   const [isConnected, setIsConnected] = useState(false);
-  const { data , refetch } = useFetch(`/notifications/?notifiable_id=8&notifiable_type=store`)
+  const { data, refetch } = useFetch(`/notifications/?notifiable_id=8&notifiable_type=store`)
   const { store } = useStore();
   const [notificationcount, setNotificationCount] = useState(data?.data?.length || 0);
- const [socketNotification, setSocketNotification] = useState<Socket | null>(null);
+  const [socketNotification, setSocketNotification] = useState<Socket | null>(null);
 
 
-  const socket = io("https://food-delivery-and-rides.onrender.com", {
+  const socket = io("https://tawsila-app.onrender.com", {
     transports: ["websocket"],
   });
 
@@ -23,11 +23,11 @@ export default function NotificationIcon() {
     socket.on("connect", () => {
       setIsConnected(true);
     });
-     const storeId = 8;
+    const storeId = 8;
     socket.emit("join_store", store?.id);
-    socket.on("new_order", (data) => { 
+    socket.on("new_order", (data) => {
       refetch();
-      setNotificationCount((prevCount:any) => prevCount + 1);
+      setNotificationCount((prevCount: any) => prevCount + 1);
     });
 
     // When disconnected
@@ -66,7 +66,7 @@ export default function NotificationIcon() {
         <Text className="text-center text-xs text-white">
           {data?.data?.length || 0}
           {/* {notificationcount} */}
-          </Text>
+        </Text>
       </View>
     </View>
   );

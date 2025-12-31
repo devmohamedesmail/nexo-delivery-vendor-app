@@ -14,10 +14,8 @@ interface CustomButtonProps {
 export default function Button({ title, onPress, icon, disabled = false, bgColor = 'bg-primary', className = '', ...props }: CustomButtonProps) {
     return (
         <View className='my-1'>
-            <TouchableOpacity
-                onPress={disabled ? undefined : onPress}
-                disabled={disabled}
-                {...props}
+            <TouchableOpacity onPress={disabled ? undefined : onPress} disabled={disabled}
+              {...props}
 
                 className={`
                     p-4 px-10 rounded-full 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { TouchableOpacity, View, Text, Switch } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import LanguageSwitcher from './LanguageSwitcher'
+import LanguageSwitcher from './language-switcher'
 
 
 export default function AccountButton({item}:any) {

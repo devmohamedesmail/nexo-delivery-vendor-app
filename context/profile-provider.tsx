@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import { useAuth } from "./auth_context";
+import { useAuth } from "./auth-provider";
 import useFetch from "@/hooks/useFetch";
 
 export const ProfileContext = createContext({});

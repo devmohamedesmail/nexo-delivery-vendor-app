@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import Button from '../ui/Button'
+import Button from '../ui/button'
 
 export default function NoStore() {
   const { t } = useTranslation()

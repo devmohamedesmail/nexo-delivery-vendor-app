@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
-import NotificationIcon from '../common/NotificationIcon'
+import NotificationIcon from '../common/notification-icon'
 
 export default function Header({ title }: { title?: string }) {
   const { t } = useTranslation()

@@ -75,7 +75,10 @@
     "confirm": "تأكيد",
     "address": "العنوان",
     "checkCredentials": "يرجى التحقق من بياناتك الخاصة وحاول مرة أخرى.",
-    "registerDescription": "أنشئ حسابًا لإدارة متجرك  "
+    "registerDescription": "أنشئ حسابًا لإدارة متجرك  ",
+    "reset-password": "نسيت كلمة المرور",
+    "send-reset-password": "إرسال رابط إعادة التعيين",
+    "back-to-login": "العودة لتسجيل الدخول"
   },
   "orders": {
     "orders": "الطلبات",

@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import Header from "@/components/ui/Header";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 import { useStore } from "@/hooks/useStore";
 import useFetch from "@/hooks/useFetch";
 

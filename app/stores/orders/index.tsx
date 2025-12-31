@@ -10,7 +10,7 @@ import { useStore } from "@/hooks/useStore";
 import FilterSection from "@/components/order/FilterSection";
 import OrderSkeleton from "@/components/order/OrderSkeleton";
 import OrderController, { Order, OrderStatus } from "@/controllers/orders/controller";
-import { useAuth } from "@/context/auth_context";
+import { useAuth } from "@/context/auth-provider";
 
 export default function Orders() {
   const { t } = useTranslation();

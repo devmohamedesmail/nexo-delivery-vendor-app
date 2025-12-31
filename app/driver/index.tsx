@@ -3,16 +3,16 @@ import { ScrollView, View, Text, TouchableOpacity, StatusBar, Image } from 'reac
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useTranslation } from 'react-i18next'
 import { useContext, useState, useCallback } from 'react'
-import { AuthContext } from '@/context/auth_context'
+import { AuthContext } from '@/context/auth-provider'
 import { useRouter } from 'expo-router'
 import { RefreshControl } from 'react-native'
 import useFetch from '@/hooks/useFetch'
 import Loading from '@/components/ui/Loading'
-import NotificationIcon from '@/components/common/NotificationIcon'
+import NotificationIcon from '@/components/common/notification-icon'
 import VehicleInfo from '@/components/driver/VehicleInfo'
 import ToggleAvailbility from '@/components/driver/ToggleAvailbility'
-import { useDriverLocation } from '@/context/DriverLocationContext'
-import Button from '@/components/ui/Button'
+import { useDriverLocation } from '@/context/driver-location-provider'
+import Button from '@/components/ui/button'
 
 export default function Home() {
   const { t } = useTranslation()

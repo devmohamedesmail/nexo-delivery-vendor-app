@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { Ionicons } from '@expo/vector-icons'
-import { useRouter } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 import CustomInput from '@/components/ui/Input'
-import CustomButton from '@/components/ui/Button'
-import { AuthContext } from '@/context/auth_context'
+import CustomButton from '@/components/ui/button'
+import { AuthContext } from '@/context/auth-provider'
 import Logo from '@/components/common/logo'
 import { Toast } from 'toastify-react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -153,13 +153,13 @@ export default function Login() {
                   </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => { }}>
+                <Link href="/auth/forget-password" >
                   <Text
                     className="text-primary font-medium"
                   >
                     {t('auth.forgotPassword')}
                   </Text>
-                </TouchableOpacity>
+                </Link>
               </View>
 
               {/* Login Button */}

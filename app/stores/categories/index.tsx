@@ -13,7 +13,7 @@ import Layout from "@/components/categories/Layout";
 import { useStore } from "@/hooks/useStore";
 import CategoryItem from "@/components/categories/CategoryItem";
 import CategoryController from "@/controllers/categories/contoller";
-import { useAuth } from "@/context/auth_context";
+import { useAuth } from "@/context/auth-provider";
 
 export default function Categories() {
   const { t } = useTranslation();

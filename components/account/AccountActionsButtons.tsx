@@ -2,10 +2,10 @@ import React, { useContext, useState } from 'react'
 import { TouchableOpacity, View, Text, Alert } from 'react-native'
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 import { useTranslation } from 'react-i18next'
-import { AuthContext } from '@/context/auth_context';
+import { AuthContext } from '@/context/auth-provider';
 import { useRouter } from 'expo-router';
 import CustomModal from '../ui/CustomModal';
-import Button from '../ui/Button';
+import Button from '../ui/button';
 import { Toast } from 'toastify-react-native';
 import Entypo from '@expo/vector-icons/Entypo';
 import Colors from '@/constants/Colors';

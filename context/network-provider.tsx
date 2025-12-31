@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import NetInfo from '@react-native-community/netinfo';
-import { View , Text} from 'react-native';
 
 
 type NetworkContextType = {

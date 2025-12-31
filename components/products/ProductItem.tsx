@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import { config } from "@/constants/config";
-import Button from "../ui/Button";
+import Button from "../ui/button";
 import Entypo from '@expo/vector-icons/Entypo';
 
 interface Category {

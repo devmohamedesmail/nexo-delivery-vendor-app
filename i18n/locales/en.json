@@ -74,7 +74,10 @@
     "confirm": "Confirm",
     "address": "Address",
     "checkCredentials": "Please check your credentials and try again.",
-    "registerDescription": "Create an account to manage your store "
+    "registerDescription": "Create an account to manage your store ",
+    "reset-password": "Forget Password",
+    "send-reset-password": "Send Reset Link",
+    "back-to-login": "Back to Login"
   },
   "orders": {
     "orders": "Orders",

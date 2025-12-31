@@ -23,7 +23,7 @@ import { useStore } from "@/hooks/useStore";
 import Layout from "@/components/ui/Layout";
 import FloatButton from "@/components/ui/FloatButton";
 import ProductController from "@/controllers/products/controller";
-import { useAuth } from "@/context/auth_context";
+import { useAuth } from "@/context/auth-provider";
 import { useQuery } from "@tanstack/react-query";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
