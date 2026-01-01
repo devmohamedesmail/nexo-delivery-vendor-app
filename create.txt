@@ -8,7 +8,7 @@ import * as Yup from 'yup'
 import axios from 'axios'
 import { config } from '@/constants/config'
 import { AuthContext } from '@/context/auth-provider'
-import Select from '@/components/ui/select'
+import Select from '@/components/ui/Select'
 import Loading from '@/components/ui/Loading'
 import Input from '@/components/ui/Input'
 import CustomButton from '@/components/ui/button'
@@ -53,10 +53,10 @@ export default function Create() {
   const router = useRouter()
   const { auth } = useContext(AuthContext)
   const { data: placesData, loading: loadingPlaces, error: errorPlaces } = useFetch('/places')
-  const { data: storeTypeData, loading: loadingstoreTypeData } = useFetch('/store-types')
+  const { data: storeTypeData, loading: loadingStoreType } = useFetch('/store-types')
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const isArabic = i18n.language === 'ar'
- 
+ console.log(storeTypeData?.data)
   // Time picker states
   const [showStartTimePicker, setShowStartTimePicker] = useState(false)
   const [showEndTimePicker, setShowEndTimePicker] = useState(false)
@@ -139,6 +139,7 @@ export default function Create() {
         }
 
       } catch (error: any) {
+        console.log('Store creation error:', error.response || error.message || error)
         Toast.show({
           type: 'error',
           text1:t('store.storeCreationFailed'),
@@ -164,10 +165,10 @@ export default function Create() {
   })) || []
 
   // Format store types for dropdown
- const storeTypeOptions = storeTypeData?.data?.map((type: any) => ({
-  label: i18n.language === 'ar' ? type.name_ar : type.name_en,
-  value: type.id.toString(),
-}))
+  const storeTypeOptions = availableStoreTypes.map((type: StoreType) => ({
+    label: i18n.language === 'ar' ? type.name_ar : type.name_en,
+    value: type.id.toString()
+  }))
 
   const handlePlaceSelect = (value: string) => {
     formik.setFieldValue('place_id', value)
@@ -237,7 +238,7 @@ export default function Create() {
                   placeholder={t('store.chooseStoreTypePlaceholder') || 'Choose a store type'}
                   value={formik.values.store_type_id}
                   onSelect={(value: string) => formik.setFieldValue('store_type_id', value)}
-                  options={storeTypeOptions}
+                  options={storeTypeData?.data}
                   disabled={availableStoreTypes.length === 0}
                   error={formik.touched.store_type_id && formik.errors.store_type_id ? formik.errors.store_type_id : undefined}
                 />

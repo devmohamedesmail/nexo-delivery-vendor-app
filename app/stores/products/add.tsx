@@ -9,7 +9,7 @@ import { Toast } from "toastify-react-native";
 import Header from "@/components/ui/Header";
 import Input from "@/components/ui/Input";
 import CustomButton from "@/components/ui/button";
-import Select from "@/components/ui/Select";
+import Select from "@/components/ui/select";
 import CustomImagePicker from "@/components/ui/customimagepicker";
 import Layout from "@/components/ui/Layout";
 import { useStore } from "@/hooks/useStore";
