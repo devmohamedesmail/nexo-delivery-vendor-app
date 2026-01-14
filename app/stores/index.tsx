@@ -14,6 +14,7 @@ import { useTheme } from "@/context/theme-provider";
 import Colors from "@/constants/Colors";
 
 
+
 export default function Home() {
   const { t } = useTranslation();
   const { store, loading } = useStore();
@@ -26,20 +27,21 @@ export default function Home() {
   return (
     <Layout>
       <View
-        className="flex-row items-center justify-between pt-20 px-4 py-4 shadow-sm"
-        style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : activeColors.background, borderBottomWidth: 1, borderBottomColor: theme === 'dark' ? '#333' : '#f3f4f6' }}
+        className="flex-row items-center justify-between pt-20 px-4 py-4 shadow-sm bg-black"
+       
       >
-        <View className="flex items-center flex-row gap-6">
+        <View className="flex items-center flex-row gap-6 ">
           <NotificationIcon />
           <ToggleTheme />
         </View>
         <Text
-          className="text-2xl font-bold"
-          style={{ color: activeColors.text }}
+          className="text-2xl text-white font-bold"
+          
         >
           {t("common.home")}
         </Text>
       </View>
+    
 
 
 
